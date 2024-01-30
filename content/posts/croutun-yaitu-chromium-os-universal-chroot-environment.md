@@ -5,6 +5,7 @@ image: >-
   https://res.cloudinary.com/dkb5yr4fe/image/upload/v1706595712/banner/1_vebmww.png
 categories:
   - Linux
+featured: true
 ---
 
 aaaa
