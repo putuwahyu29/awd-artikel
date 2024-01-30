@@ -30,4 +30,4 @@ Captions
 
 [Link Piped](https://github.com/TeamPiped/Piped)
 
-![](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/29c451d659b8725c0f74bb8de74670b20e1ba7c0-945x2048.webp)![](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/6fc0dc0732206a8d6993b28506f26771d99cb291-640x1386.webp)![](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/7fef30dba2fbb00993a4d180e93fa3c7d2eff2e3-945x2048.webp)![](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/a718cc49fbe08f83c624217b7ab136f9d9336c3d-945x2048.webp)
+![Sedang Memuat](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/29c451d659b8725c0f74bb8de74670b20e1ba7c0-945x2048.webp)![Sedang Memuat](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/6fc0dc0732206a8d6993b28506f26771d99cb291-640x1386.webp)![Sedang Memuat](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/7fef30dba2fbb00993a4d180e93fa3c7d2eff2e3-945x2048.webp)![Sedang Memuat](/https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/7/a718cc49fbe08f83c624217b7ab136f9d9336c3d-945x2048.webp)

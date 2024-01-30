@@ -12,12 +12,12 @@ Salah satu cara untuk memanfaatkan Laravel Logging adalah dengan mengintegrasika
 
 ### Konfigurasi Slack Webhook URL
 
-1. Buatlah channel pada akun Slack Anda. Sebagai contoh, nama channelnya adalah laravel-log-notification ![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184104.png>)
-2. Kemudian buku website [Slack API](https://api.slack.com/apps) lalu klik tombol Create New App dan pilih From Scratch ![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184449.png>)![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184508.png>)
-3. Selanjutnya isikan App Name lalu pilih workspace Slack Anda dan klik Create App![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184535.png>)
-4. Kemudian pada sidebar Slack API pilih Incoming Webhooks dan aktifkan![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184932.png>)
-5. Setelah diaktifkan, klik Add New Webhook to Workspace dan pilih channel yang sudah dibuat sebelumnya![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184955.png>)![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 185021.png>)
-6. Pembuatan Webhook sudah selesai, kemudian simpan Webhook URL tersebut dan nanti akan digunakan pada aplikasi Laravel![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 185047.png>)
+1. Buatlah channel pada akun Slack Anda. Sebagai contoh, nama channelnya adalah laravel-log-notification ![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184104.png>)
+2. Kemudian buku website [Slack API](https://api.slack.com/apps) lalu klik tombol Create New App dan pilih From Scratch ![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184449.png>)![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184508.png>)
+3. Selanjutnya isikan App Name lalu pilih workspace Slack Anda dan klik Create App![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184535.png>)
+4. Kemudian pada sidebar Slack API pilih Incoming Webhooks dan aktifkan![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184932.png>)
+5. Setelah diaktifkan, klik Add New Webhook to Workspace dan pilih channel yang sudah dibuat sebelumnya![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 184955.png>)![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 185021.png>)
+6. Pembuatan Webhook sudah selesai, kemudian simpan Webhook URL tersebut dan nanti akan digunakan pada aplikasi Laravel![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/19/Cuplikan layar 2024-01-29 185047.png>)
 
 ### Konfigurasi Laravel Logging Slack
 

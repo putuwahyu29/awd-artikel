@@ -15,12 +15,12 @@ Versi Unified Modeling Language saat ini adalah UML 2.5, dirilis pada bulan Juni
 
 ### Klasifikasi
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/1.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/1.webp)
 
 UML diagram dibagi menjadi 2 jenis yaitu :
 
-* Diagram Struktur menunjukkan struktur statis sistem dan bagian-bagiannya pada tingkat abstraksi dan implementasi yang berbeda serta keterkaitannya satu sama lain.
-* Diagram Perilaku menunjukkan perilaku dinamis objek-objek dalam suatu sistem, yang dapat digambarkan sebagai serangkaian perubahan pada sistem dari waktu ke waktu.
+- Diagram Struktur menunjukkan struktur statis sistem dan bagian-bagiannya pada tingkat abstraksi dan implementasi yang berbeda serta keterkaitannya satu sama lain.
+- Diagram Perilaku menunjukkan perilaku dinamis objek-objek dalam suatu sistem, yang dapat digambarkan sebagai serangkaian perubahan pada sistem dari waktu ke waktu.
 
 ### Jenis
 
@@ -41,31 +41,31 @@ Behavior Diagram yang sering digunakan terdiri dari :
 
 #### Class Diagram
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/8.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/8.webp)
 
 #### Component Diagram
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/3.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/3.webp)
 
 #### Package Diagram
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/6.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/6.webp)
 
 #### Use Case Diagram
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/9.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/9.webp)
 
 #### Activity Diagram
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/10.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/10.webp)
 
 #### State Machine Diagram
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/11.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/11.webp)
 
 #### Sequence Diagram
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/12.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/17/12.webp)
 
 ### Refrensi
 

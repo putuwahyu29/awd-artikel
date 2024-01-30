@@ -12,13 +12,13 @@ Haloo semuanya, kali ini saya akan membagikan cara untuk mengontrol "home server
 
 Silahkan instal Tailscale VPN pada perangkat yang ingin anda gunakan untuk mengontrol. Contohnya saya menginstal pada Hp Android saya dan Laptop Windows saya.Setelah diinstal, kemudian login dan aktifkan VPN tersebut.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/e6f706bce6b48dd5edcd1c082141f964a1e73830-1920x1033.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/e6f706bce6b48dd5edcd1c082141f964a1e73830-1920x1033.webp)
 
 Selanjutnya, terdapat 3 skenario yang saya gunakan kali ini pada perangkat home server yang akan dikontrol.
 
 A. Skenario 1 : Tailscale VPN sebagai Subnets
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/dfa5a136b7c17fcbee721e2f249c111e8e149f87-1920x1033.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/dfa5a136b7c17fcbee721e2f249c111e8e149f87-1920x1033.webp)
 
 Tujuannya yaitu agar semua IP yang berada di segmen yang sama diakses dengan Tailscale.Contohnya IP Lokal saya 192.168.0.xxxUntuk memanfaatkan Tailscale sebagai Subnets, kali ini saya akan menggunakan 1 kontainer yang saya buat di Proxmox VE saya.Kemudian, kita akan menginstal Tailscale pada kontainer tersebut dengan cara
 
@@ -62,7 +62,7 @@ Karena IP saya 192.168.0.xxx maka advertise-routes=192.168.0.06. Selanjutnya akt
 
 B. Skenario 2 : Konfigurasi DNS Lokal Pihole
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/bfacf6ce5e5f29b64f67922c082ec0294ebc82df-1920x1033.webp)Pada Skenario 1, kita sudah dapat mengakses home server kita namun hanya menggunakan IP saja.
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/bfacf6ce5e5f29b64f67922c082ec0294ebc82df-1920x1033.webp)Pada Skenario 1, kita sudah dapat mengakses home server kita namun hanya menggunakan IP saja.
 
 Jika kita sudah mengatur DNS Lokal pada pihole, maka langkahnya yaitu
 
@@ -88,7 +88,7 @@ Kemudian akan muncul tautan untuk login ke akun anda. Langkah selanjutkan akan m
 tailscale up --accept-dns=false
 ```
 
-5\. Kemudian buka admin console dan klik DNS. Pada bagian nameservers silahkan klik Add nameserver lalu custom, kemudian masukkan IP Pihole Tailscale (IP nya 100.x.x.x silahkan sesuaikan)![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/352ab5b40b79600bef098040587d4628433d2c05-1920x1033.webp)![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/da73edacb3287b3dade406dc206a43aa2c8649db-1920x1033.webp)![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/4db0ab96ddf81ccde840461293485ac73f44a381-1920x1033.webp)
+5\. Kemudian buka admin console dan klik DNS. Pada bagian nameservers silahkan klik Add nameserver lalu custom, kemudian masukkan IP Pihole Tailscale (IP nya 100.x.x.x silahkan sesuaikan)![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/352ab5b40b79600bef098040587d4628433d2c05-1920x1033.webp)![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/da73edacb3287b3dade406dc206a43aa2c8649db-1920x1033.webp)![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/4db0ab96ddf81ccde840461293485ac73f44a381-1920x1033.webp)
 
 6\. Jangan lupa juga untuk disable key expiry
 
@@ -96,7 +96,7 @@ tailscale up --accept-dns=false
 
 C. Skenario 3 : Tailscale VPN sebagai Exit Node
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/5ee8f0d60b26efbd92f07c76c0e085923876d35b-1920x1033.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/5ee8f0d60b26efbd92f07c76c0e085923876d35b-1920x1033.webp)
 
 Tujuannya yaitu untuk menggunakan DNS milik Tailscale pada perangkat yang akan dibagikan.
 
@@ -156,10 +156,10 @@ Gunakan IP Tailscale 100.xxx.xxx.xxx
 
 8\. Kemudian buka admin console lagi kemudian klik share dan klik invite link. Bagikan link tersebut ke orang yang anda ingin beri akses. Selain itu silahkan disable key expiry. Selamat, anda dapat mengakses DNS Lokal Tailscale ts.net. Selain itu dapat juga dengan mengakses IP Tailscale (100.xxx.xxx.xxx)
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/2153e9ad18022191dfe2b6cc5c31c60f573d2d54-1920x1033.webp)![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/97ff9d0047434c63fdeddb18b614d949291b33b5-1920x1033.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/2153e9ad18022191dfe2b6cc5c31c60f573d2d54-1920x1033.webp)![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/97ff9d0047434c63fdeddb18b614d949291b33b5-1920x1033.webp)
 
 Tampilan mengakses web lokal dengan tailscale
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/316214e4766ee637c723c75c05005455ba052c9d-1920x1033.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/316214e4766ee637c723c75c05005455ba052c9d-1920x1033.webp)
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/3307c1ef19cb012c2de15cb964590bab11625889-1920x1033.webp)![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/c7b967aca9abc77051da2b552b57a499d2f117e1-1920x1033.webp)![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/f79181dc04be3676ebeb3358da24b2be7523364c-1920x1033.webp)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/3307c1ef19cb012c2de15cb964590bab11625889-1920x1033.webp)![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/c7b967aca9abc77051da2b552b57a499d2f117e1-1920x1033.webp)![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/f79181dc04be3676ebeb3358da24b2be7523364c-1920x1033.webp)

@@ -16,13 +16,13 @@ Paket mongodb/laravel-mongodb memungkinkan pengembang Laravel untuk menggunakan 
 
 Untuk menggunakan MongoDB di sistem operasi Windows, saya menyarankan Anda untuk menggunakan [Laragon](https://laragon.org/ "Laragon") sebagai lingkungan pengembangan pada perangkat Anda.
 
-![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/18/Cuplikan layar 2024-01-28 172523.png>)
+![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/18/Cuplikan layar 2024-01-28 172523.png>)
 
 ### Aktivasi MongoDB PHP Driver di Windows
 
 1. Silahkan unduh driver dan sesuaikan pada versi PHP yang digunakan pada tautan berikut [https://github.com/mongodb/mongo-php-driver/releases/ ](https://github.com/mongodb/mongo-php-driver/releases/)
-2. Kemudian ekstrak file yang sudah diunduh dan silahkan salin file php_mongodb.dll ke direktori ekstensi php. Contohnya terletak pada C:\laragon\bin\php\php-8.2.3-nts-Win32-vs16-x64\ext. Jika menggunakan Laragon, untuk masuk ke direktori ekstensi dapat dilakukan dengan cara seperti berikut :![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/18/Cuplikan layar 2024-01-28 172130.png>)
-3. Kemudian tambahkan baris berikut extension=php_mongodb.dll ke file php.ini untuk setiap lingkungan yang perlu menggunakan driver. Jika menggunakan Laragon, untuk mengaktifkan ekstensi mongodb dapat dilakukan dengan cara seperti berikut :![](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/18/Cuplikan layar 2024-01-28 172204.png>)
+2. Kemudian ekstrak file yang sudah diunduh dan silahkan salin file php_mongodb.dll ke direktori ekstensi php. Contohnya terletak pada C:\laragon\bin\php\php-8.2.3-nts-Win32-vs16-x64\ext. Jika menggunakan Laragon, untuk masuk ke direktori ekstensi dapat dilakukan dengan cara seperti berikut :![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/18/Cuplikan layar 2024-01-28 172130.png>)
+3. Kemudian tambahkan baris berikut extension=php_mongodb.dll ke file php.ini untuk setiap lingkungan yang perlu menggunakan driver. Jika menggunakan Laragon, untuk mengaktifkan ekstensi mongodb dapat dilakukan dengan cara seperti berikut :![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/18/Cuplikan layar 2024-01-28 172204.png>)
 
 ### Konfigurasi MongoDB di Proyek Laravel
 

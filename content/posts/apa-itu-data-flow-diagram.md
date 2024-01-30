@@ -21,7 +21,7 @@ DFD mencakup ciri-ciri sebagai berikut:
 
 ### Contoh
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar2.png)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar2.png)
 
 ### Notasi
 
@@ -31,25 +31,25 @@ Notasi berikut berdasarkan Gane & Sarson Notation System
 
 Proses adalah transformasi data. Ia menerima aliran data sebagai masukan dan menghasilkan aliran data sebagai keluaran.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar3.png)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar3.png)
 
 #### Data Flow / Aliran Data
 
-Aliran Data adalah elemen penghubung yang kedua ujungnya terhubung ke aktivitas/proses,  Penyimpanan Data, entitas eksternal, dan sebagainya.
+Aliran Data adalah elemen penghubung yang kedua ujungnya terhubung ke aktivitas/proses, Penyimpanan Data, entitas eksternal, dan sebagainya.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar4.png)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar4.png)
 
 #### Data Store / Penyimpanan Data
 
 Penyimpanan data adalah tempat penyimpanan data permanen dan menyajikan pengganti basis data/fail.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar5.png)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar5.png)
 
 #### External Entity / Entitas Eksternal
 
 Entitas Eksternal merupakan asal/tujuan aliran data eksternal dan menyediakan koneksi ke konteks sistem.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar6.png)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/15/Gambar6.png)
 
 ### Aturan DFD
 
@@ -60,5 +60,5 @@ Entitas Eksternal merupakan asal/tujuan aliran data eksternal dan menyediakan ko
 
 ### Refrensi
 
-* Li, Q., & Chen, Y. L. (2009). Modeling and Analysis of Enterprise and Information Systems: from requirements to realization. Higher Education Press.
-* What is Data Flow Diagram? (n.d.). Retrieved January 1, 2024, from [https://www.visual-paradigm.com/guide/data-flow-diagram/what-is-data-flow-diagram/](https://www.visual-paradigm.com/guide/data-flow-diagram/what-is-data-flow-diagram/)
+- Li, Q., & Chen, Y. L. (2009). Modeling and Analysis of Enterprise and Information Systems: from requirements to realization. Higher Education Press.
+- What is Data Flow Diagram? (n.d.). Retrieved January 1, 2024, from [https://www.visual-paradigm.com/guide/data-flow-diagram/what-is-data-flow-diagram/](https://www.visual-paradigm.com/guide/data-flow-diagram/what-is-data-flow-diagram/)

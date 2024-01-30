@@ -26,30 +26,30 @@ A. Kontainer
 
 1\. Pihole saya gunakan untuk Lokal DNS agar bisa diakses menggunakan domain.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397231686_2400324750154027_1258061231073910181_n.jpg)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397231686_2400324750154027_1258061231073910181_n.jpg)
 
 2\. Cloudflare saya gunakan untuk tunneling agar beberapa web bisa diakses sebagai publik.
 
 3\. Tailscale saya gunakan untuk VPN dibeberapa perangkat saya. Konfigurasi tailscale juga lumayan mudah dan terdapat Magic DNS juga.
 
-4\. Homarr saya gunakan untuk dasbor semua aplikasi yang tersedia pada server.![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397143079_2400324950154007_548556195420260124_n.jpg)
+4\. Homarr saya gunakan untuk dasbor semua aplikasi yang tersedia pada server.![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397143079_2400324950154007_548556195420260124_n.jpg)
 
-5\. Uptime Kuma saya gunakan untuk monitoring web yang saja jadikan publik.![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397186578_2400324886820680_6027108955856399335_n.jpg)
+5\. Uptime Kuma saya gunakan untuk monitoring web yang saja jadikan publik.![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397186578_2400324886820680_6027108955856399335_n.jpg)
 
-6\. Apache Guacamole saya gunakan sebagai remote access ke rdp maupun ssh yang dimiliki. ![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397194906_2400324933487342_3902296092300133529_n.jpg)
+6\. Apache Guacamole saya gunakan sebagai remote access ke rdp maupun ssh yang dimiliki. ![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397194906_2400324933487342_3902296092300133529_n.jpg)
 
 7\. Pialert saya gunakan untuk melihat perangkat yang terkoneksi.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397172139_2400324900154012_7688363395989397797_n.jpg)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397172139_2400324900154012_7688363395989397797_n.jpg)
 
 B. Mesin Virtual
 
 1\. Synology NAS saya gunakan untuk mencadangkan beberapa fail pada komputer.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397165744_2400324690154033_3256370809224219205_n.jpg)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/397165744_2400324690154033_3256370809224219205_n.jpg)
 
 2\. Cloud Panel yang terinstal di Ubuntu Server 22.04 saya gunakan untuk mempermudah hosting beberapa website yang saya memiliki.
 
-![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/398731700_2400324923487343_3456076794900333097_n.jpg)
+![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142//post/11/398731700_2400324923487343_3456076794900333097_n.jpg)
 
 3\. Windows 11 saya gunakan untuk mencoba coba beberapa fitur terbaru, selain itu agar bisa diremote.
