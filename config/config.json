@@ -1,0 +1,60 @@
+{
+  "site": {
+    "title": "Awd Artikel",
+    "base_url": "https://blog.awd.my.id",
+    "favicon": "/images/favicon.png",
+    "logo": "",
+    "logo_white": "",
+    "logo_width": "150",
+    "logo_height": "39",
+    "logo_text": "awd."
+  },
+  "settings": {
+    "theme_switcher": true,
+    "default_theme": "system",
+    "pagination": 6,
+    "InnerPaginationOptions": {
+      "enableTop": false,
+      "enableBottom": true
+    },
+    "summary_length": 200,
+    "blog_folder": "posts"
+  },
+  "params": {
+    "tag_manager_id": "",
+    "footer_content": "Di sini, Anda akan menemukan banyak artikel yang menarik dan informatif",
+    "copyright": "Awd"
+  },
+  "metadata": {
+    "meta_author": "Agus Wahyu",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Awd Artikel"
+  },
+  "widgets": {
+    "about": {
+      "enable": false,
+      "content": "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper."
+    },
+    "featured_posts": {
+      "enable": true,
+      "title": "Kategori Artikel",
+      "showPost": 3
+    },
+    "categories": {
+      "enable": true,
+      "title": "Kategori Artikel"
+    },
+    "newsletter": {
+      "enable": true,
+      "title": "Buletin",
+      "content": "Bergabunglah dengan ribuan pelanggan Awd Artikel dan dapatkan artikel terbaik dari kami setiap minggunya!",
+      "privacy_policy_page": "#",
+      "mailchimp_url": "https://awd.us8.list-manage.com/subscribe/post?u=be7a4a1cff43e9ca9721d7d50&amp;id=ca76dc30aa&amp;f_id=00eaade3f0"
+    }
+  },
+  "disqus": {
+    "enable": true,
+    "shortname": "awd-my-id",
+    "settings": {}
+  }
+}

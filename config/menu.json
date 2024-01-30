@@ -1,0 +1,33 @@
+{
+  "main": [
+    {
+      "name": "Beranda",
+      "url": "/"
+    },
+    {
+      "name": "Artikel",
+      "url": "/posts"
+    },
+    {
+      "name": "Kategori",
+      "url": "/categories"
+    }
+  ],
+  "footer": [
+    {
+      "name": "Peta Situs",
+      "url": "/sitemap.xml",
+      "blank": true
+    },
+    {
+      "name": "Umpan RSS",
+      "url": "/rss.xml",
+      "blank": true
+    },
+    {
+      "name": "Kebijakan Privasi",
+      "url": "/privacy",
+      "blank": false
+    }
+  ]
+}
