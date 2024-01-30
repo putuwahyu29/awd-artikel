@@ -9,5 +9,12 @@ export default createMediaHandler({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
-  authorized: true,
+  authorized: async (req, _res) => {
+    try {
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  },
 });
