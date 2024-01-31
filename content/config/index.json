@@ -2,7 +2,7 @@
   "site": {
     "title": "Awd Artikel",
     "base_url": "https://blog.awd.my.id",
-    "favicon": "/images/favicon.png",
+    "favicon": "https://blog.awd.my.id/images/favicon.png",
     "logo": "",
     "logo_white": "",
     "logo_width": "150",
@@ -27,7 +27,7 @@
   },
   "metadata": {
     "meta_author": "Agus Wahyu",
-    "meta_image": "/images/og-image.png",
+    "meta_image": "https://blog.awd.my.id/images/og-image.png",
     "meta_description": "Awd Artikel"
   },
   "widgets": {
