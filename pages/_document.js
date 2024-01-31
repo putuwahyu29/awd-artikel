@@ -1,5 +1,5 @@
 import TwSizeIndicator from "@components/TwSizeIndicator";
-import config from "@config/config.json";
+import config from "@config/index.json";
 import { Head, Html, Main, NextScript } from "next/document";
 
 const Document = () => {

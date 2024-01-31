@@ -1,4 +1,4 @@
-import config from "@config/config.json";
+import config from "@config/index.json";
 import Base from "@layouts/Baseof";
 import ImageFallback from "@layouts/components/ImageFallback";
 import Pagination from "@layouts/components/Pagination";

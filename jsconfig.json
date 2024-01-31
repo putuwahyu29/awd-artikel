@@ -6,7 +6,7 @@
       "@components/*": ["layouts/components/*"],
       "@partials/*": ["layouts/partials/*"],
       "@shortcodes/*": ["layouts/shortcodes/*"],
-      "@config/*": ["config/*"],
+      "@config/*": ["content/config/*"],
       "@json/*": ["json/*"],
       "@hooks/*": ["hooks/*"],
       "@lib/*": ["lib/*"]

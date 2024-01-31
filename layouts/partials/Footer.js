@@ -1,5 +1,5 @@
-import config from "@config/config.json";
-import menu from "@config/menu.json";
+import config from "@config/index.json";
+import menu from "@config/menu/index.json";
 import ImageFallback from "@layouts/components/ImageFallback";
 import Logo from "@layouts/components/Logo";
 import { markdownify } from "@lib/utils/textConverter";

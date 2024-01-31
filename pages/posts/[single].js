@@ -1,4 +1,4 @@
-import config from "@config/config.json";
+import config from "@config/index.json";
 import PostSingle from "@layouts/PostSingle";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";

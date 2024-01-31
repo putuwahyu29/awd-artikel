@@ -1,4 +1,4 @@
-import config from "@config/config.json";
+import config from "@config/index.json";
 import Base from "@layouts/Baseof";
 import InnerPagination from "@layouts/components/InnerPagination";
 import dateFormat from "@lib/utils/dateFormat";

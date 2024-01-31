@@ -1,5 +1,5 @@
 import ImageFallback from "@components/ImageFallback";
-import config from "@config/config.json";
+import config from "@config/index.json";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";

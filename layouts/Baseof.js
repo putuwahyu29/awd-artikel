@@ -1,4 +1,4 @@
-import config from "@config/config.json";
+import config from "@config/index.json";
 import { plainify } from "@lib/utils/textConverter";
 import Footer from "@partials/Footer";
 import Header from "@partials/Header";
@@ -81,16 +81,10 @@ const Base = ({
         />
 
         {/* og-image */}
-        <meta
-          property="og:image"
-          content={`${image ? image : meta_image}`}
-        />
+        <meta property="og:image" content={`${image ? image : meta_image}`} />
 
         {/* twitter-image */}
-        <meta
-          name="twitter:image"
-          content={`${image ? image : meta_image}`}
-        />
+        <meta name="twitter:image" content={`${image ? image : meta_image}`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header />

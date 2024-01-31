@@ -1,4 +1,4 @@
-import config from "@config/config.json";
+import config from "@config/index.json";
 import ImageFallback from "@layouts/components/ImageFallback";
 import CustomForm from "@layouts/components/NewsLetterForm";
 import dateFormat from "@lib/utils/dateFormat";

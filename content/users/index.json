@@ -1,13 +1,9 @@
 {
   "users": [
     {
-      "name": "Tina User",
-      "email": "user@tina.io",
-      "username": "tinauser",
-      "password": {
-        "value": "tinarocks",
-        "passwordChangeRequired": true
-      }
+      "name": "I Putu Agus Wahyu Dupayana",
+      "email": "aguswahyu@awd.my.id",
+      "username": "aguswahyu29"
     }
   ]
 }

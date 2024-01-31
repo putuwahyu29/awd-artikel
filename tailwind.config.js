@@ -1,4 +1,4 @@
-const theme = require("./config/theme.json");
+const theme = require("./content/config/theme/index.json");
 
 let font_base = Number(theme.fonts.font_size.base.replace("px", ""));
 let font_scale = Number(theme.fonts.font_size.scale);

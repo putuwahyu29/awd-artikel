@@ -1,5 +1,5 @@
-import config from "@config/config.json";
-import theme from "@config/theme.json";
+import config from "@config/index.json";
+import theme from "@config/theme/index.json";
 import { JsonContext } from "context/state";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
