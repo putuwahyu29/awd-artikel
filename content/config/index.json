@@ -48,7 +48,7 @@
       "enable": true,
       "title": "Buletin",
       "content": "Bergabunglah dengan ribuan pelanggan Awd Artikel dan dapatkan artikel terbaik dari kami setiap minggunya!",
-      "privacy_policy_page": "#",
+      "privacy_policy_page": "/privacy",
       "mailchimp_url": "https://awd.us8.list-manage.com/subscribe/post?u=be7a4a1cff43e9ca9721d7d50&amp;id=ca76dc30aa&amp;f_id=00eaade3f0"
     }
   },

@@ -3,8 +3,7 @@ title: "Kebijakan Privasi"
 draft: false
 ---
 
-
-Terakhir diperbarui pada tanggal 1 Januari 2021
+Terakhir diperbarui pada tanggal 1 Januari 2024
 
 Awd menghargai privasi pengunjungnya dan berkomitmen untuk melindungi data pribadi pengguna. Kebijakan Privasi ini menjelaskan bagaimana Awd mengumpulkan, menyimpan, menggunakan, dan melindungi data yang diungkapkan oleh pengunjung saat mengakses dan menggunakan situs web awd.my.id. Dengan mengunjungi dan menggunakan situs web kami, Anda menyetujui hal-hal yang tercantum dalam Kebijakan Privasi ini.
 
