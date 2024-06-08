@@ -1,7 +1,7 @@
 ---
 title: Mengontrol Home Server dengan Bardi Smart Plug
 date: 2023-12-29T16:00:00.000Z
-image: https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/banner/14.png
+image: 'https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/banner/14.png'
 categories:
   - Tailscale
   - Bardi
@@ -21,18 +21,22 @@ Selanjutnya, saya akan coba membagikan beberapa sistem yang saya gunakan untuk m
 
 1\. Bardi Smart Home. Aplikasi ini saya gunakan untuk menyalakan "Home Server" saya dan memutuskan arus listrik.
 
-![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.27.59_c12223aa.jpg>)![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.49.12_9b800118.jpg>)![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.49.12_74535363.jpg>)
+![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v1706657648/post/14/Gambar_WhatsApp_2023-12-30_pukul_09.49.12_74535363.jpg)
 
 2\. Tailscale. Aplikasi ini untuk mengaktifkan VPN pada perangkat saya agar terhubung dengan "Home Server" ketika berada diluar jaringan yang sama.
 
-![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.49.11_59689b74.jpg>)![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.49.11_4acb5a78.jpg>)
+![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v1706657645/post/14/Gambar_WhatsApp_2023-12-30_pukul_09.49.11_4acb5a78.jpg)
 
 3\. Termius. Aplikasi SSH yang biasa saya gunakan untuk menjalan perintah "shutdown now" awkwk.
 
-![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.49.10_246dc723.jpg>)
+![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v1706657643/post/14/Gambar_WhatsApp_2023-12-30_pukul_09.49.10_246dc723.jpg)
 
 4\. Proxmox VE Mobile. Aplikasi ini memiliki fitur yang mirip seperti Proxmox VE versi browser.
 
-![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.49.10_6f5e3096.jpg>)
+![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v1706657642/post/14/Gambar_WhatsApp_2023-12-30_pukul_09.49.10_6f5e3096.jpg)
 
-5\. Grafana. Saya menginstal sistem ini pada "home server" saya untuk memonitor sistem saya melalu web browser saya.Mungkin itu saja yang saya dapat bagikan. Sekian dan terima kasih![Sedang Memuat](<https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/14/Gambar WhatsApp 2023-12-30 pukul 09.49.10_f3871e58.jpg>)
+5\. Grafana. Saya menginstal sistem ini pada "home server" saya untuk memonitor sistem saya melalu web browser saya.
+
+![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v1706657644/post/14/Gambar_WhatsApp_2023-12-30_pukul_09.49.10_f3871e58.jpg)
+
+Mungkin itu saja yang saya dapat bagikan. Sekian dan terima kasih
