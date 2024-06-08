@@ -1,7 +1,7 @@
 ---
 title: Memaksimalkan Tailscale VPN untuk mengontrol server rumahan
 date: 2023-11-06T17:00:00.000Z
-image: https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/banner/12.png
+image: 'https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/banner/12.png'
 categories:
   - Tailscale
   - Proxmox
@@ -12,7 +12,7 @@ Haloo semuanya, kali ini saya akan membagikan cara untuk mengontrol "home server
 
 Silahkan instal Tailscale VPN pada perangkat yang ingin anda gunakan untuk mengontrol. Contohnya saya menginstal pada Hp Android saya dan Laptop Windows saya.Setelah diinstal, kemudian login dan aktifkan VPN tersebut.
 
-![Sedang Memuat](https://res.cloudinary.com/dkb5yr4fe/image/upload/v17066562142/post/12/e6f706bce6b48dd5edcd1c082141f964a1e73830-1920x1033.webp)
+![](https://res.cloudinary.com/dkb5yr4fe/image/upload/v1706657655/post/13/a40f99b618a364ad3cd747b5ff1dca874c78e647-1920x1033.webp)
 
 Selanjutnya, terdapat 3 skenario yang saya gunakan kali ini pada perangkat home server yang akan dikontrol.
 
