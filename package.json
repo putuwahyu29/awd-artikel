@@ -15,6 +15,7 @@
     "@tinacms/datalayer": "^1.2.32",
     "@vercel/analytics": "^1.1.2",
     "@vercel/speed-insights": "^1.0.8",
+    "awd-artikel": "file:",
     "disqus-react": "^1.1.5",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
