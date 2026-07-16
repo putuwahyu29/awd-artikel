@@ -6,7 +6,7 @@ import { markdownify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
-import Image from "next/image";
+import ImageFallback from "@layouts/components/ImageFallback";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 import Post from "./partials/Post";
@@ -57,12 +57,12 @@ const PostSingle = ({
               <article>
                 <div className="relative">
                   {image && (
-                    <Image
+                    <ImageFallback
                       src={image}
                       height="500"
                       width="1000"
                       alt={title}
-                      className="rounded-lg"
+                      className="rounded-lg w-full"
                     />
                   )}
                   <ul className="absolute left-2 top-3 flex flex-wrap items-center">

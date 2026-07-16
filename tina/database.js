@@ -3,19 +3,7 @@ import { GitHubProvider } from "tinacms-gitprovider-github";
 // import { RedisLevel } from 'upstash-redis-level'
 import { MongodbLevel } from "mongodb-level";
 
-const mongodbLevelStore = new MongodbLevel({
-  collectionName: "tinacms",
-  dbName: "tinacms",
-  mongoUri: process.env.MONGODB_URI,
-});
-
-// const RedisLevel =  new RedisLevel({
-//   redis: {
-//     url: process.env.KV_REST_API_URL || "http://localhost:8079",
-//     token: process.env.KV_REST_API_TOKEN || "example_token",
-//   },
-//   debug: process.env.DEBUG === "true" || false,
-// });
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -23,7 +11,13 @@ const branch =
   process.env.HEAD ||
   "main";
 
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
+const mongodbLevelStore = isLocal
+  ? null
+  : new MongodbLevel({
+      collectionName: "tinacms",
+      dbName: "tinacms",
+      mongoUri: process.env.MONGODB_URI,
+    });
 
 export default isLocal
   ? createLocalDatabase()
