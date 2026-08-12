@@ -38,8 +38,10 @@ const Header = () => {
         <div className="flex items-center space-x-4 xl:space-x-8">
           <div
             className={`collapse-menu ${
-              !showMenu && "translate-x-full"
-            } lg:flex lg:translate-x-0`}
+              !showMenu
+                ? "translate-x-full invisible opacity-0 pointer-events-none"
+                : "translate-x-0 visible opacity-100"
+            } lg:flex lg:translate-x-0 lg:visible lg:opacity-100 lg:pointer-events-auto`}
           >
             <button
               className="absolute right-6 top-11 lg:hidden"
