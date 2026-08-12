@@ -1,9 +1,17 @@
 import { config, collection, singleton, fields } from "@keystatic/core";
+import React from "react";
 
 export default config({
   ui: {
     brand: {
-      name: "Awd Artikel CMS",
+      name: "Awd Artikel",
+      mark: () =>
+        React.createElement("img", {
+          src: "/images/favicon.png",
+          alt: "Awd Artikel",
+          height: 24,
+          style: { height: "24px", width: "auto", borderRadius: "4px" },
+        }),
     },
   },
   storage:
