@@ -13,6 +13,17 @@ export default config({
           style: { height: "24px", width: "auto", borderRadius: "4px" },
         }),
     },
+    navigation: {
+      "Konten Utama": ["posts"],
+      "Halaman & Beranda": ["homePage", "pages"],
+      "Pengaturan & Sistem": [
+        "siteConfig",
+        "menuConfig",
+        "socialConfig",
+        "themeConfig",
+        "userProfiles",
+      ],
+    },
   },
   storage:
     process.env.NODE_ENV === "development" ||

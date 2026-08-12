@@ -11,11 +11,11 @@ const Post = ({ post }) => {
     ? post.frontmatter.author
     : meta_author;
   return (
-    <div className="post">
-      <div className="relative">
+    <div className="post group rounded-lg p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+      <div className="relative overflow-hidden rounded">
         {post.frontmatter.image && (
           <ImageFallback
-            className="rounded"
+            className="rounded transition-transform duration-500 group-hover:scale-105"
             src={post.frontmatter.image}
             alt={post.frontmatter.title}
             width={405}

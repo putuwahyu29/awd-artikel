@@ -3,7 +3,7 @@ body.menu-open {
 }
 
 .header {
-  @apply top-0 z-50 border-b bg-body py-[33px] dark:border-darkmode-border dark:bg-darkmode-body;
+  @apply sticky top-0 z-50 border-b bg-body/90 backdrop-blur-md py-[18px] transition-all duration-300 dark:border-darkmode-border dark:bg-darkmode-body/90;
 }
 
 // navbar items
