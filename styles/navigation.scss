@@ -12,7 +12,7 @@ body.menu-open {
 }
 
 .collapse-menu {
-  @apply fixed right-0 top-0 z-50 mx-0 h-[100vh] w-full max-w-[320px] items-center border-l border-border bg-body p-6 transition-all duration-300 ease-in-out dark:border-darkmode-border dark:bg-darkmode-body lg:static lg:flex lg:h-auto lg:w-auto lg:max-w-full lg:space-x-4 lg:border-l-0 lg:bg-transparent lg:p-0 xl:space-x-8;
+  @apply fixed right-0 top-0 z-50 mx-0 h-[100vh] w-full max-w-[300px] flex flex-col justify-between border-l border-border bg-white p-6 shadow-2xl transition-all duration-300 ease-in-out dark:border-darkmode-border dark:bg-darkmode-body lg:static lg:flex lg:flex-row lg:h-auto lg:w-auto lg:max-w-full lg:space-x-4 lg:border-l-0 lg:bg-transparent lg:p-0 lg:shadow-none xl:space-x-8;
 }
 
 .navbar-brand {
