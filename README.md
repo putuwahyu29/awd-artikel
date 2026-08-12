@@ -6,7 +6,7 @@ Awd Artikel adalah aplikasi web blog modern berbasis **Next.js**, **Tailwind CSS
 
 ## 🛠️ Fitur Utama
 - **Keystatic CMS**: Pengelolaan konten visual dari browser melalui halaman admin (`/admin` atau `/keystatic`).
-- **Mode Lokal & GitHub OAuth**: Pengeditan lokal di lingkungan *development* dan otomatis *commit & push* langsung ke GitHub saat di *production*.
+- **Mode Lokal & GitHub OAuth/Apps**: Pengeditan lokal di lingkungan *development* dan otomatis *commit & push* langsung ke GitHub saat di *production*.
 - **UI/UX Premium**: Desain responsif, kartu artikel presisi, drawer menu seluler *glassmorphism*, serta dukungan *Light & Dark Mode*.
 - **SEO & RSS**: Dilengkapi generator sitemap otomatis dan feed RSS.
 
@@ -44,23 +44,36 @@ Buka [http://localhost:3000](http://localhost:3000) di browser Anda. Halaman Key
 
 ---
 
-## 🌐 Panduan Konfigurasi Production (GitHub OAuth CMS)
+## 🌐 Panduan Konfigurasi Production (GitHub CMS Integration)
 
-Ketika website di-deploy ke **Vercel** atau platform hosting lainnya, Keystatic CMS menggunakan **GitHub OAuth App** untuk mengamankan login dan melakukan commit perubahan artikel secara langsung ke repositori GitHub.
+Ketika website di-deploy ke **Vercel** atau platform hosting lainnya, Anda dapat menghubungkan Keystatic CMS ke GitHub menggunakan salah satu dari dua metode di bawah ini:
 
-### Langkah 1: Membuat GitHub OAuth App
+### Pilihan A: Menggunakan GitHub OAuth App (Metode Tercepat & Direkomendasikan)
 1. Buka [GitHub Developer Settings -> OAuth Apps](https://github.com/settings/applications/new).
 2. Isi formulir pendaftaran:
    - **Application name**: `Awd Artikel CMS`
    - **Homepage URL**: `https://awd.my.id` *(Ganti dengan domain website production Anda)*
    - **Authorization callback URL**: `https://awd.my.id/api/keystatic/github/created-app`
 3. Klik **Register application**.
-4. Salin **Client ID**.
-5. Klik **Generate a new client secret** dan salin **Client Secret**.
+4. Salin **Client ID** dan buat **Client Secret** baru.
 
 ---
 
-### Langkah 2: Menambahkan Environment Variables di Vercel / Server
+### Pilihan B: Menggunakan GitHub App (Metode Lanjutan dengan Permissions Granular)
+1. Buka [GitHub Developer Settings -> GitHub Apps](https://github.com/settings/apps/new).
+2. Isi rincian aplikasi:
+   - **GitHub App name**: `Awd Artikel CMS App` *(Harus unik di GitHub)*
+   - **Homepage URL**: `https://awd.my.id`
+   - **Callback URL**: `https://awd.my.id/api/keystatic/github/created-app`
+   - **Webhook**: Hilangkan centang pada **Active** *(Disable Webhooks)*.
+3. Atur **Permissions**:
+   - **Repository permissions -> Contents**: Pilih `Read & write`.
+   - **Repository permissions -> Pull requests**: Pilih `Read & write`.
+4. Klik **Create GitHub App**, lalu buat **Client Secret** dan install aplikasi ini ke repositori `putuwahyu29/awd-artikel` Anda.
+
+---
+
+### Menambahkan Environment Variables di Vercel / Server
 
 Tambahkan variabel lingkungan (*Environment Variables*) berikut pada dasbor platform hosting Anda (misalnya **Vercel -> Project Settings -> Environment Variables**):
 
@@ -68,8 +81,8 @@ Tambahkan variabel lingkungan (*Environment Variables*) berikut pada dasbor plat
 | :--- | :--- | :--- |
 | `BASE_URL` | `https://awd.my.id` | Domain utama publik website Anda |
 | `KEYSTATIC_STORAGE_KIND` | `github` | Mengaktifkan mode integrasi GitHub di Production |
-| `KEYSTATIC_GITHUB_CLIENT_ID` | `Iv1.1234567890abcdef` | Client ID dari GitHub OAuth App |
-| `KEYSTATIC_GITHUB_CLIENT_SECRET` | `1234567890abcdef1234567890abcdef` | Client Secret dari GitHub OAuth App |
+| `KEYSTATIC_GITHUB_CLIENT_ID` | `Iv1.1234567890abcdef` | Client ID dari GitHub OAuth / GitHub App |
+| `KEYSTATIC_GITHUB_CLIENT_SECRET` | `1234567890abcdef1234567890abcdef` | Client Secret dari GitHub OAuth / GitHub App |
 | `KEYSTATIC_SECRET` | `string_acak_rahasia_panjang_123` | String acak untuk enkripsi sesi login CMS |
 | `NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER` | `putuwahyu29` | Username pemilik repositori GitHub |
 | `NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG` | `awd-artikel` | Nama repositori GitHub |
