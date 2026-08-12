@@ -1,5 +1,6 @@
-html {
-  @apply text-base;
+html,
+body {
+  @apply overflow-x-hidden max-w-full text-base;
 }
 
 body {
