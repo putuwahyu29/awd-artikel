@@ -2,9 +2,9 @@
   "site": {
     "title": "Awd Artikel",
     "base_url": "https://blog.awd.my.id",
-    "favicon": "/images/favicon.png",
-    "logo": "/images/banner.svg",
-    "logo_white": "/images/banner.svg",
+    "favicon": "/images/site/favicon.png",
+    "logo": "",
+    "logo_white": "",
     "logo_width": "150",
     "logo_height": "39",
     "logo_text": "awd."
@@ -21,13 +21,12 @@
     "blog_folder": "posts"
   },
   "params": {
-    "tag_manager_id": "",
     "footer_content": "Di sini, Anda akan menemukan banyak artikel yang menarik dan informatif",
     "copyright": "Awd"
   },
   "metadata": {
     "meta_author": "Agus Wahyu",
-    "meta_image": "/images/og-image.png",
+    "meta_image": "/images/metadata/meta_image.png",
     "meta_description": "Awd Artikel"
   },
   "widgets": {

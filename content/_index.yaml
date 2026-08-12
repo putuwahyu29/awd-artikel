@@ -3,7 +3,7 @@ banner:
   title_small: ""
   content: "Di sini, Anda akan menemukan banyak artikel yang menarik dan informatif. Berbagai artikel tersebut berfokus pada topik mengenai teknologi."
   image_enable: true
-  image: /images/banner.svg
+  image: /images/banner/16.png
   button:
     enable: true
     label: Tentang Penulis
