@@ -65,7 +65,7 @@ const Post = ({ post }) => {
         {post.content.slice(0, Number(summary_length))}...
       </p>
       <Link
-        className="btn btn-outline-primary mt-4 inline-flex items-center gap-1.5 transition-all duration-300 group-hover:bg-primary group-hover:text-white"
+        className="btn btn-outline-primary mt-auto inline-flex items-center gap-1.5 pt-4 transition-all duration-300 group-hover:bg-primary group-hover:text-white"
         href={`/${blog_folder}/${post.slug}`}
       >
         <span>Baca Selengkapnya</span>
