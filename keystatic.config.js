@@ -7,7 +7,7 @@ export default config({
       name: "Awd Artikel",
       mark: () =>
         React.createElement("img", {
-          src: "/images/favicon.png",
+          src: "/images/site/favicon.png",
           alt: "Awd Artikel",
           height: 24,
           style: { height: "24px", width: "auto", borderRadius: "4px" },
