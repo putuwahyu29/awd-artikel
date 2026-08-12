@@ -1,6 +1,11 @@
 import { config, collection, singleton, fields } from "@keystatic/core";
 
 export default config({
+  ui: {
+    brand: {
+      name: "Awd Artikel CMS",
+    },
+  },
   storage:
     process.env.NODE_ENV === "development" ||
     process.env.KEYSTATIC_STORAGE_KIND === "local"
@@ -86,9 +91,21 @@ export default config({
         site: fields.object({
           title: fields.text({ label: "Judul Situs" }),
           base_url: fields.text({ label: "Base URL" }),
-          favicon: fields.text({ label: "Favicon URL" }),
-          logo: fields.text({ label: "Logo URL" }),
-          logo_white: fields.text({ label: "Logo White URL" }),
+          favicon: fields.image({
+            label: "Favicon",
+            directory: "public/images",
+            publicPath: "/images/",
+          }),
+          logo: fields.image({
+            label: "Logo",
+            directory: "public/images",
+            publicPath: "/images/",
+          }),
+          logo_white: fields.image({
+            label: "Logo Mode Gelap (White Logo)",
+            directory: "public/images",
+            publicPath: "/images/",
+          }),
           logo_width: fields.text({ label: "Logo Width" }),
           logo_height: fields.text({ label: "Logo Height" }),
           logo_text: fields.text({ label: "Logo Text" }),
@@ -117,7 +134,11 @@ export default config({
         }),
         metadata: fields.object({
           meta_author: fields.text({ label: "Meta Author" }),
-          meta_image: fields.text({ label: "Meta Image URL" }),
+          meta_image: fields.image({
+            label: "Meta Image (OG Image)",
+            directory: "public/images",
+            publicPath: "/images/",
+          }),
           meta_description: fields.text({
             label: "Meta Description",
             multiline: true,
@@ -280,7 +301,11 @@ export default config({
           title_small: fields.text({ label: "Sub-judul Banner" }),
           content: fields.text({ label: "Konten Banner", multiline: true }),
           image_enable: fields.checkbox({ label: "Tampilkan Gambar" }),
-          image: fields.text({ label: "Gambar Banner" }),
+          image: fields.image({
+            label: "Gambar Banner",
+            directory: "public/images",
+            publicPath: "/images/",
+          }),
           button: fields.object({
             enable: fields.checkbox({ label: "Tampilkan Tombol" }),
             label: fields.text({ label: "Label Tombol" }),
@@ -294,7 +319,11 @@ export default config({
         }),
         promotion: fields.object({
           enable: fields.checkbox({ label: "Tampilkan Promosi" }),
-          image: fields.text({ label: "Gambar Promosi" }),
+          image: fields.image({
+            label: "Gambar Promosi",
+            directory: "public/images",
+            publicPath: "/images/",
+          }),
           link: fields.text({ label: "Link Promosi" }),
         }),
         recent_posts: fields.object({
@@ -323,4 +352,3 @@ export default config({
     }),
   },
 });
-
