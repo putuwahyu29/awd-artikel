@@ -93,33 +93,35 @@ const Home = ({
               {featured_posts.enable && (
                 <div className="section">
                   {markdownify(featured_posts.title, "h2", "section-title")}
-                  <div className="rounded border border-border p-6 dark:border-darkmode-border">
+                  <div className="rounded-2xl border border-border/50 bg-white/50 p-6 shadow-sm backdrop-blur-sm dark:border-darkmode-border/50 dark:bg-darkmode-theme-dark/20">
                     <div className="row">
                       <div className="md:col-6">
                         <Post post={featuredPosts[0]} />
                       </div>
-                      <div className="scrollbar-w-[10px] mt-8 max-h-[480px] overflow-y-auto scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-border md:col-6 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-darkmode-theme-dark md:mt-0">
+                      <div className="scrollbar-w-[10px] mt-8 max-h-[480px] overflow-y-auto pr-2 scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-border md:col-6 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-darkmode-theme-dark md:mt-0">
                         {featuredPosts
                           .slice(1, featuredPosts.length)
                           .map((post, i, arr) => (
                             <div
-                              className={`mb-6 flex items-center pb-6 ${
+                              className={`group mb-4 flex items-center rounded-xl p-2.5 transition-all duration-300 hover:bg-gray-50 dark:hover:bg-darkmode-theme-dark/50 ${
                                 i !== arr.length - 1 &&
-                                "border-b border-border dark:border-darkmode-border"
+                                "border-b border-border/40 dark:border-darkmode-border/40"
                               }`}
                               key={`key-${i}`}
                             >
                               {post.frontmatter.image && (
-                                <ImageFallback
-                                  className="mr-3 h-[85px] rounded object-cover"
-                                  src={post.frontmatter.image}
-                                  alt={post.frontmatter.title}
-                                  width={105}
-                                  height={85}
-                                />
+                                <div className="mr-3 overflow-hidden rounded-lg">
+                                  <ImageFallback
+                                    className="h-[85px] w-[105px] rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
+                                    src={post.frontmatter.image}
+                                    alt={post.frontmatter.title}
+                                    width={105}
+                                    height={85}
+                                  />
+                                </div>
                               )}
                               <div>
-                                <h3 className="h5 mb-2">
+                                <h3 className="h6 mb-1.5 transition-colors group-hover:text-primary">
                                   <Link
                                     href={`/${blog_folder}/${post.slug}`}
                                     className="block hover:text-primary"
@@ -127,8 +129,8 @@ const Home = ({
                                     {post.frontmatter.title}
                                   </Link>
                                 </h3>
-                                <p className="inline-flex items-center font-bold">
-                                  <FaRegCalendar className="mr-1.5" />
+                                <p className="inline-flex items-center text-xs font-semibold text-gray-500 dark:text-darkmode-light/70">
+                                  <FaRegCalendar className="mr-1.5 text-primary text-xs" />
                                   {dateFormat(post.frontmatter.date)}
                                 </p>
                               </div>
