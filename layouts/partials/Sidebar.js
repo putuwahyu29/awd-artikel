@@ -16,7 +16,7 @@ const Sidebar = ({ posts, categories, className }) => {
     (post) => post.frontmatter.featured
   );
 
-  const [showRecent, setShowRecent] = useState(true);
+  const [showRecent, setShowRecent] = useState(false);
 
   return (
     <aside className={`${className} px-0 lg:col-4 lg:px-6`}>
