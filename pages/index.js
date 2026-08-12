@@ -110,13 +110,13 @@ const Home = ({
                               key={`key-${i}`}
                             >
                               {post.frontmatter.image && (
-                                <div className="mr-3 overflow-hidden rounded-lg">
+                                <div className="mr-3 aspect-video h-[75px] w-[110px] flex-shrink-0 overflow-hidden rounded-lg">
                                   <ImageFallback
-                                    className="h-[85px] w-[105px] rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
+                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                                     src={post.frontmatter.image}
                                     alt={post.frontmatter.title}
-                                    width={105}
-                                    height={85}
+                                    width={110}
+                                    height={75}
                                   />
                                 </div>
                               )}

@@ -11,15 +11,15 @@ const Post = ({ post }) => {
     ? post.frontmatter.author
     : meta_author;
   return (
-    <div className="post group h-full rounded-2xl border border-border/40 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl dark:border-darkmode-border/40 dark:bg-darkmode-theme-dark/30">
-      <div className="relative overflow-hidden rounded-xl">
+    <div className="post group flex h-full flex-col rounded-2xl border border-border/40 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl dark:border-darkmode-border/40 dark:bg-darkmode-theme-dark/30">
+      <div className="relative aspect-video w-full overflow-hidden rounded-xl">
         {post.frontmatter.image && (
           <ImageFallback
-            className="w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             src={post.frontmatter.image}
             alt={post.frontmatter.title}
             width={405}
-            height={208}
+            height={228}
           />
         )}
         <ul className="absolute left-3 top-3 flex flex-wrap items-center gap-1.5">

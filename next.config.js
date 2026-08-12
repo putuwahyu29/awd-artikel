@@ -15,6 +15,15 @@ const nextConfig = {
   sassOptions: {
     silenceDeprecations: ["import"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/admin",
+        destination: "/keystatic",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

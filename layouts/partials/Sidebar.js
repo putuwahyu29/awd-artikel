@@ -98,9 +98,9 @@ const Sidebar = ({ posts, categories, className }) => {
                     key={`key-${i}`}
                   >
                     {post.frontmatter.image && (
-                      <div className="mr-3 overflow-hidden rounded-full">
+                      <div className="mr-3 aspect-square h-[65px] w-[65px] flex-shrink-0 overflow-hidden rounded-full">
                         <ImageFallback
-                          className="h-[65px] w-[65px] min-w-[65px] rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                           src={post.frontmatter.image}
                           alt={post.frontmatter.title}
                           width={65}
@@ -135,9 +135,9 @@ const Sidebar = ({ posts, categories, className }) => {
                     key={`key-${i}`}
                   >
                     {post.frontmatter.image && (
-                      <div className="mr-3 overflow-hidden rounded-full">
+                      <div className="mr-3 aspect-square h-[65px] w-[65px] flex-shrink-0 overflow-hidden rounded-full">
                         <ImageFallback
-                          className="h-[65px] w-[65px] min-w-[65px] rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                           src={post.frontmatter.image}
                           alt={post.frontmatter.title}
                           width={65}
