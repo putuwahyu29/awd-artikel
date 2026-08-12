@@ -36,11 +36,11 @@ const Header = () => {
 
   return (
     <header className="header">
-      <nav className="navbar container px-1 sm:px-8">
+      <nav className="navbar container px-3 sm:px-8">
         <div className="order-0">
           <Logo />
         </div>
-        <div className="flex items-center space-x-4 xl:space-x-8">
+        <div className="flex items-center space-x-3 xl:space-x-8">
           <div
             className={`collapse-menu ${
               !showMenu
@@ -48,13 +48,19 @@ const Header = () => {
                 : "translate-x-0 visible opacity-100 pointer-events-auto"
             } lg:flex lg:translate-x-0 lg:visible lg:opacity-100 lg:pointer-events-auto`}
           >
-            <button
-              className="absolute right-6 top-6 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary/10 hover:text-primary dark:bg-darkmode-theme-dark dark:text-darkmode-light lg:hidden"
-              onClick={() => setShowMenu(false)}
-              aria-label="Tutup Menu"
-            >
-              <IoClose className="text-xl" />
-            </button>
+            {/* Mobile Drawer Top Header Bar */}
+            <div className="flex items-center justify-between border-b border-gray-100 pb-4 dark:border-darkmode-border/40 lg:hidden">
+              <Logo />
+              <button
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary/10 hover:text-primary dark:bg-darkmode-theme-dark dark:text-darkmode-light"
+                onClick={() => setShowMenu(false)}
+                aria-label="Tutup Menu"
+              >
+                <IoClose className="text-xl" />
+              </button>
+            </div>
+
+            {/* Navigation Menu Links */}
             <ul
               id="nav-menu"
               className="navbar-nav w-full md:w-auto md:space-x-1 lg:flex xl:space-x-2"
@@ -113,8 +119,11 @@ const Header = () => {
                 </React.Fragment>
               ))}
             </ul>
-            {/* header social */}
-            <Social source={socical} className="socials" />
+
+            {/* Mobile Drawer Social Footer */}
+            <div className="border-t border-gray-100 pt-4 dark:border-darkmode-border/40 lg:border-t-0 lg:pt-0">
+              <Social source={socical} className="socials flex items-center justify-center space-x-3" />
+            </div>
           </div>
 
           <ThemeSwitcher />
@@ -149,7 +158,7 @@ const Header = () => {
         />
       </nav>
 
-      {/* Mobile Drawer Backdrop */}
+      {/* Mobile Drawer Backdrop Overlay */}
       {showMenu && (
         <div
           onClick={() => setShowMenu(false)}

@@ -23,22 +23,22 @@ body.menu-open {
 }
 
 .navbar-nav {
-  @apply mt-16 lg:mt-0;
+  @apply mt-6 lg:mt-0 space-y-1.5 lg:space-y-0;
 }
 
 .nav-item {
-  @apply mb-5 text-left lg:mb-0;
+  @apply mb-0 text-left lg:mb-0;
 
   &.active {
-    @apply bg-primary text-white;
+    @apply bg-transparent;
   }
 }
 
 .nav-link {
-  @apply rounded-[30px] px-6 py-2.5 text-left font-secondary text-[13.5px] capitalize  text-dark transition hover:bg-primary hover:text-white dark:text-darkmode-light md:px-3 md:py-3 lg:text-center xl:px-5;
+  @apply rounded-xl px-4 py-3 text-left font-secondary text-sm font-semibold capitalize text-dark transition-all hover:bg-primary/10 hover:text-primary dark:text-darkmode-light lg:rounded-full lg:px-4 lg:py-2 lg:text-center xl:px-5;
 
   &.active {
-    @apply bg-primary text-white;
+    @apply bg-primary/10 text-primary font-bold dark:bg-primary/20 dark:text-primary lg:bg-primary lg:text-white lg:dark:bg-primary lg:dark:text-white;
   }
 }
 
