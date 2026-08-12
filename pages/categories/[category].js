@@ -21,7 +21,7 @@ const Category = ({ postsByCategories, category, posts, categories }) => {
           </h1>
           <div className="row">
             <div className="lg:col-8">
-              <div className="row rounded-2xl border border-border/50 bg-white/50 p-4 px-3 backdrop-blur-sm dark:border-darkmode-border/50 dark:bg-darkmode-theme-dark/20 lg:p-6">
+              <div className="row">
                 {postsByCategories.map((post, i) => (
                   <div key={`key-${i}`} className="mb-8 flex col-12 sm:col-6">
                     <Post post={post} />
