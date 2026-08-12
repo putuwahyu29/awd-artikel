@@ -2,9 +2,9 @@
   "site": {
     "title": "Awd Artikel",
     "base_url": "https://blog.awd.my.id",
-    "favicon": "https://blog.awd.my.id/images/favicon.png",
-    "logo": "",
-    "logo_white": "",
+    "favicon": "/images/favicon.png",
+    "logo": "/images/banner.svg",
+    "logo_white": "/images/banner.svg",
     "logo_width": "150",
     "logo_height": "39",
     "logo_text": "awd."
@@ -27,7 +27,7 @@
   },
   "metadata": {
     "meta_author": "Agus Wahyu",
-    "meta_image": "https://blog.awd.my.id/images/og-image.png",
+    "meta_image": "/images/og-image.png",
     "meta_description": "Awd Artikel"
   },
   "widgets": {
