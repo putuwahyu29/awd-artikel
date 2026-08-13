@@ -1,10 +1,35 @@
 import { useEffect, useState } from "react";
+import { FaArrowUp } from "react-icons/fa";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Top: 0 takes us all the way back to the top of the page
-  // Behavior: smooth keeps it smooth!
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      if (currentScroll > 200) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+
+      if (scrollHeight > 0) {
+        const progress = Math.min(
+          100,
+          Math.max(0, (currentScroll / scrollHeight) * 100)
+        );
+        setScrollProgress(progress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,32 +37,46 @@ export default function ScrollToTop() {
     });
   };
 
-  useEffect(() => {
-    // Button is displayed after scrolling for 500 pixels
-    const toggleVisibility = () => {
-      if (window.scrollY > 100) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
+  const radius = 18;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (scrollProgress / 100) * circumference;
 
-    window.addEventListener("scroll", toggleVisibility);
-
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-8 right-8 z-[99]">
-      {isVisible && (
-        <div
-          onClick={scrollToTop}
-          aria-label="scroll to top"
-          className="hover:shadow-signUp flex h-10 w-10 cursor-pointer items-center justify-center rounded-sm bg-primary text-white shadow-md transition duration-300 ease-in-out hover:bg-opacity-80"
-        >
-          <span className="mt-[6px] h-3 w-3 rotate-45 border-l border-t border-white"></span>
-        </div>
-      )}
+    <div className="fixed bottom-6 right-6 z-[99]">
+      <button
+        type="button"
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+        className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 dark:bg-darkmode-theme-dark"
+      >
+        {/* SVG Circular Progress Ring */}
+        <svg className="h-12 w-12 -rotate-90 transform" viewBox="0 0 44 44">
+          <circle
+            cx="22"
+            cy="22"
+            r={radius}
+            className="stroke-gray-200 dark:stroke-darkmode-border"
+            strokeWidth="3"
+            fill="none"
+          />
+          <circle
+            cx="22"
+            cy="22"
+            r={radius}
+            className="stroke-primary transition-all duration-150 ease-out"
+            strokeWidth="3"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
+
+        {/* Arrow Icon */}
+        <FaArrowUp className="absolute text-sm text-primary transition-transform duration-300 group-hover:-translate-y-0.5" />
+      </button>
     </div>
   );
 }

@@ -3,7 +3,7 @@ body.menu-open {
 }
 
 .header {
-  @apply sticky top-0 z-50 border-b bg-body/90 backdrop-blur-md py-[18px] transition-all duration-300 dark:border-darkmode-border dark:bg-darkmode-body/90;
+  @apply fixed top-0 left-0 right-0 z-40 border-b border-border/40 bg-body/95 backdrop-blur-md py-4 transition-all duration-300 dark:border-darkmode-border/40 dark:bg-darkmode-body/95 shadow-xs;
 }
 
 // navbar items
@@ -65,18 +65,6 @@ body.menu-open {
 // search style
 .search-icon {
   @apply inline-block h-10 w-10 cursor-pointer rounded-full bg-primary p-2.5 text-xl text-white;
-}
-.search-modal {
-  @apply invisible absolute top-0 left-0 right-0 z-10 h-10 bg-body opacity-0 transition dark:bg-black md:h-full;
-  .form-input {
-    @apply h-full w-full border-0 px-4 text-lg;
-  }
-  .search-close {
-    @apply absolute top-1/2 right-2 -translate-y-1/2 p-3 text-h4;
-  }
-  &.open {
-    @apply visible opacity-100;
-  }
 }
 
 .light .menu-open {

@@ -128,15 +128,19 @@ const Header = () => {
 
           <ThemeSwitcher />
 
-          {/* Header search */}
-          <div
-            className="search-icon flex items-center justify-center cursor-pointer"
-            onClick={() => {
-              setSearchModal(true);
-            }}
+          {/* Header search with Cmd+K badge */}
+          <button
+            type="button"
+            className="flex items-center space-x-2 rounded-full border border-border/60 bg-gray-50 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-all hover:border-primary/40 hover:bg-gray-100 hover:text-primary dark:border-darkmode-border/60 dark:bg-darkmode-theme-dark/50 dark:text-darkmode-light/80 dark:hover:bg-darkmode-theme-dark"
+            onClick={() => setSearchModal(true)}
+            aria-label="Cari Artikel (Ctrl+K)"
           >
-            <IoSearch />
-          </div>
+            <IoSearch className="text-sm" />
+            <span className="hidden md:inline">Cari...</span>
+            <kbd className="hidden rounded bg-gray-200/80 px-1.5 py-0.5 text-[10px] font-bold text-gray-500 dark:bg-darkmode-border dark:text-darkmode-light/70 sm:inline-block">
+              ⌘K
+            </kbd>
+          </button>
 
           {/* Mobile Menu Hamburger Button */}
           <button

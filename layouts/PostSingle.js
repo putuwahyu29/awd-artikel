@@ -1,14 +1,19 @@
+import { useState } from "react";
 import config from "@config/index.json";
 import Base from "@layouts/Baseof";
 import InnerPagination from "@layouts/components/InnerPagination";
+import ReadingProgressBar from "@layouts/components/ReadingProgressBar";
+import TableOfContents from "@layouts/components/TableOfContents";
 import dateFormat from "@lib/utils/dateFormat";
+import readingTime from "@lib/utils/readingTime";
+import wordCount from "@lib/utils/wordCount";
 import { markdownify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
 import { useTheme } from "next-themes";
 import ImageFallback from "@layouts/components/ImageFallback";
 import Link from "next/link";
-import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
+import { FaRegCalendar, FaUserAlt, FaRegClock, FaFileAlt, FaLink, FaCheck } from "react-icons/fa";
 import Post from "./partials/Post";
 import Sidebar from "./partials/Sidebar";
 import shortcodes from "./shortcodes/all";
@@ -40,8 +45,22 @@ const PostSingle = ({
   let { description, title, date, image, categories } = frontmatter;
   description = description ? description : content.slice(0, 120);
 
+  const [showToast, setShowToast] = useState(false);
   const { theme } = useTheme();
   const author = frontmatter.author ? frontmatter.author : meta_author;
+  const readTime = readingTime(content || "");
+  const words = wordCount(content || "");
+
+  const handleCopyLink = () => {
+    const currentUrl =
+      typeof window !== "undefined"
+        ? window.location.href
+        : `${base_url}/${config.settings.blog_folder}/${slug}`;
+    navigator.clipboard.writeText(currentUrl);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
+
   // Local copy so we don't modify global config.
   let disqusConfig = config.disqus.settings;
   disqusConfig.identifier = frontmatter.disqusId
@@ -50,6 +69,7 @@ const PostSingle = ({
 
   return (
     <Base title={title} description={description} image={image}>
+      <ReadingProgressBar />
       <section className="section single-blog mt-6">
         <div className="container">
           <div className="row">
@@ -89,21 +109,33 @@ const PostSingle = ({
                   </div>
                 )}
                 {markdownify(title, "h1", "lg:text-[42px] mt-4")}
-                <ul className="flex items-center space-x-4">
+                <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 my-3">
                   <li>
                     <Link
-                      className="inline-flex items-center font-secondary text-xs leading-3"
+                      className="inline-flex items-center font-secondary text-xs leading-3 text-gray-600 dark:text-darkmode-light/70 hover:text-primary"
                       href="https://awd.my.id"
                     >
-                      <FaUserAlt className="mr-1.5" />
+                      <FaUserAlt className="mr-1.5 text-primary text-[10px]" />
                       {author}
                     </Link>
                   </li>
-                  <li className="inline-flex items-center font-secondary text-xs leading-3">
-                    <FaRegCalendar className="mr-1.5" />
+                  <li className="inline-flex items-center font-secondary text-xs leading-3 text-gray-600 dark:text-darkmode-light/70">
+                    <FaRegCalendar className="mr-1.5 text-primary text-[10px]" />
                     {dateFormat(date)}
                   </li>
+                  <li className="inline-flex items-center font-secondary text-xs leading-3 text-gray-600 dark:text-darkmode-light/70">
+                    <FaRegClock className="mr-1.5 text-primary text-[10px]" />
+                    {readTime}
+                  </li>
+                  <li className="inline-flex items-center font-secondary text-xs leading-3 text-gray-600 dark:text-darkmode-light/70">
+                    <FaFileAlt className="mr-1.5 text-primary text-[10px]" />
+                    {words}
+                  </li>
                 </ul>
+
+                {/* Table of Contents */}
+                <TableOfContents content={content} />
+
                 <div className="content mb-16">
                   <MDXRemote {...mdxContent} components={shortcodes} />
                 </div>
@@ -113,8 +145,8 @@ const PostSingle = ({
               </article>
 
               {/* Share */}
-              <div className="mt-5 space-x-4">
-                <h3 className="section-title">Bagikan Artikel Ini</h3>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <h3 className="section-title mb-0 mr-2">Bagikan Artikel Ini</h3>
                 <FacebookShareButton
                   url={`${base_url}/${config.settings.blog_folder}/${slug}`}
                   quote={title}
@@ -145,7 +177,24 @@ const PostSingle = ({
                 >
                   <TelegramIcon size={40} round />
                 </TelegramShareButton>
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className="flex h-10 items-center space-x-1.5 rounded-full bg-gray-100 px-4 text-xs font-bold text-gray-700 transition-all hover:bg-primary hover:text-white dark:bg-darkmode-theme-dark dark:text-darkmode-light dark:hover:bg-primary"
+                  title="Salin Link Artikel"
+                >
+                  <FaLink size={12} />
+                  <span>Salin Link</span>
+                </button>
               </div>
+
+              {/* Toast Notification */}
+              {showToast && (
+                <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 flex items-center space-x-2 rounded-full bg-gray-900/95 px-5 py-3 text-xs font-semibold text-white shadow-2xl backdrop-blur-md dark:bg-white/95 dark:text-gray-900 transition-all duration-300">
+                  <FaCheck className="text-emerald-400 dark:text-emerald-600 text-sm" />
+                  <span>Link artikel berhasil disalin ke clipboard!</span>
+                </div>
+              )}
 
               <div className="mt-16">
                 <h3 className="section-title">Komentar</h3>

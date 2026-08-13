@@ -1,8 +1,10 @@
 import config from "@config/index.json";
 import ImageFallback from "@layouts/components/ImageFallback";
 import dateFormat from "@lib/utils/dateFormat";
+import readingTime from "@lib/utils/readingTime";
+import wordCount from "@lib/utils/wordCount";
 import Link from "next/link";
-import { FaRegCalendar, FaUserAlt, FaArrowRight } from "react-icons/fa";
+import { FaRegCalendar, FaUserAlt, FaArrowRight, FaRegClock, FaStar, FaFileAlt } from "react-icons/fa";
 
 const Post = ({ post }) => {
   const { summary_length, blog_folder } = config.settings;
@@ -19,6 +21,9 @@ const Post = ({ post }) => {
         .replace(/[*_~`]/g, "")
         .trim()
         .slice(0, Number(summary_length));
+
+  const readTime = readingTime(post.content || "");
+  const words = wordCount(post.content || "");
 
   return (
     <article className="post group flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-xl dark:border-darkmode-border/60 dark:bg-darkmode-theme-dark/40">
@@ -45,12 +50,18 @@ const Post = ({ post }) => {
             </li>
           ))}
         </ul>
+
+        {post.frontmatter.featured && (
+          <div className="absolute right-3 top-3 z-10 inline-flex items-center rounded-full bg-amber-500/90 px-2.5 py-1 text-[10px] font-bold text-white shadow-md backdrop-blur-md">
+            <FaStar className="mr-1 text-[9px]" /> Unggulan
+          </div>
+        )}
       </div>
 
       {/* Card Content Body */}
       <div className="flex flex-1 flex-col p-5">
-        {/* Meta Author & Date */}
-        <div className="mb-2.5 flex items-center space-x-4 text-xs text-gray-500 dark:text-darkmode-light/70">
+        {/* Meta Author, Date, Reading Time & Word Count */}
+        <div className="mb-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 dark:text-darkmode-light/70">
           <span className="inline-flex items-center font-medium">
             <FaUserAlt className="mr-1.5 text-[10px] text-primary" />
             {author}
@@ -58,6 +69,14 @@ const Post = ({ post }) => {
           <span className="inline-flex items-center font-medium">
             <FaRegCalendar className="mr-1.5 text-[10px] text-primary" />
             {dateFormat(post.frontmatter.date)}
+          </span>
+          <span className="inline-flex items-center font-medium">
+            <FaRegClock className="mr-1.5 text-[10px] text-primary" />
+            {readTime}
+          </span>
+          <span className="inline-flex items-center font-medium">
+            <FaFileAlt className="mr-1.5 text-[10px] text-primary" />
+            {words}
           </span>
         </div>
 
@@ -92,3 +111,4 @@ const Post = ({ post }) => {
 };
 
 export default Post;
+
