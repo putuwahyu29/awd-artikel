@@ -1,7 +1,7 @@
 import React from "react";
 import config from "@config/index.json";
 import theme from "@config/theme/index.json";
-import "styles/style.scss";
+import "../styles/style.scss";
 import { Providers } from "./providers";
 import type { Metadata, Viewport } from "next";
 

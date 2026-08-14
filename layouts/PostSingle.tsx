@@ -9,7 +9,7 @@ import TableOfContents from "@layouts/components/TableOfContents";
 import dateFormat from "@lib/utils/dateFormat";
 import readingTime from "@lib/utils/readingTime";
 import wordCount from "@lib/utils/wordCount";
-import { markdownify } from "@lib/utils/textConverter";
+import { markdownify, slugify } from "@lib/utils/textConverter";
 import { DiscussionEmbed } from "disqus-react";
 import { useTheme } from "next-themes";
 import ImageFallback from "@layouts/components/ImageFallback";
@@ -18,6 +18,9 @@ import { FaRegCalendar, FaUserAlt, FaRegClock, FaFileAlt, FaLink, FaCheck } from
 import Post from "./partials/Post";
 import Sidebar from "./partials/Sidebar";
 import AuthorCard from "@layouts/components/AuthorCard";
+import ArticleToolbar from "@layouts/components/ArticleToolbar";
+import MarkAsRead from "@layouts/components/MarkAsRead";
+import ArticleStats from "@layouts/components/ArticleStats";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -79,67 +82,88 @@ const PostSingle: React.FC<PostSingleProps> = ({
     ? frontmatter.disqusId
     : config.settings.blog_folder + "/" + slug;
 
-  return (
-    <Base title={title} description={description} image={image}>
-      <ReadingProgressBar />
-      <section className="section single-blog pt-6 pb-16">
-        <div className="container px-4">
-          <div className="row">
-            <div className="lg:col-8">
-              <article className="rounded-3xl border border-slate-200/80 bg-white/80 p-6 sm:p-10 shadow-xl backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-900/50">
-                {/* Category Tags */}
-                <div className="mb-4 flex flex-wrap items-center gap-2">
-                  {categories.map((tag: string, index: number) => (
-                    <Link
-                      key={"tag-" + index}
-                      href={`/categories/${tag.replace(" ", "-").toLowerCase()}`}
-                      className="inline-flex items-center rounded-full bg-blue-50 px-3.5 py-1 text-xs font-bold capitalize text-primary transition-all hover:bg-primary hover:text-white dark:bg-blue-950/60 dark:text-blue-300 dark:hover:bg-primary dark:hover:text-white"
-                    >
-                      {tag}
-                    </Link>
-                  ))}
-                </div>
+  const [fontSize, setFontSize] = useState<"small" | "normal" | "large">("normal");
 
-                {/* Article Title */}
-                <h1 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl lg:text-5xl leading-tight">
+  const fontSizeStyle =
+    fontSize === "small"
+      ? { fontSize: "14px", lineHeight: "1.7" }
+      : fontSize === "large"
+      ? { fontSize: "20px", lineHeight: "1.8" }
+      : { fontSize: "16px", lineHeight: "1.75" };
+
+  return (
+    <Base title={title} meta_title={title} description={description} image={image}>
+      <ReadingProgressBar />
+      <MarkAsRead slug={slug} />
+      
+      <section className="section pt-8">
+        <div className="container px-4 sm:px-6">
+          <div className="row justify-center">
+            <div className="lg:col-8">
+              <article className="post-single rounded-3xl border border-slate-200/80 bg-white/90 p-6 sm:p-10 shadow-xl backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-900/70">
+                {/* Categories */}
+                {categories.length > 0 && (
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {categories.map((category: string, i: number) => (
+                      <Link
+                        key={i}
+                        href={`/categories/${slugify(category)}`}
+                        className="rounded-full bg-primary/10 px-3.5 py-1 text-xs font-bold text-primary transition-all hover:bg-primary hover:text-white dark:bg-primary/20 dark:text-blue-300"
+                      >
+                        {category}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
+                {/* Post Title */}
+                <h1 className="mb-6 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-3xl lg:text-4xl leading-snug">
                   {title}
                 </h1>
 
-                {/* Article Meta Bar */}
-                <div className="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-slate-100 py-3.5 text-xs font-medium text-slate-500 dark:border-slate-800 dark:text-slate-400">
-                  <span className="inline-flex items-center">
-                    <FaUserAlt className="mr-2 text-xs text-primary" />
+                {/* Author & Meta Bar */}
+                <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-slate-100 pb-6 text-xs font-medium text-slate-500 dark:border-slate-800/80 dark:text-slate-400">
+                  <span className="inline-flex items-center text-slate-700 font-bold dark:text-slate-200">
+                    <FaUserAlt className="mr-1.5 text-primary text-[11px]" />
                     {author}
                   </span>
                   {date && (
                     <span className="inline-flex items-center">
-                      <FaRegCalendar className="mr-2 text-xs text-primary" />
+                      <FaRegCalendar className="mr-1.5 text-primary text-[11px]" />
                       {dateFormat(date)}
                     </span>
                   )}
                   <span className="inline-flex items-center">
-                    <FaRegClock className="mr-2 text-xs text-primary" />
+                    <FaRegClock className="mr-1.5 text-primary text-[11px]" />
                     {readTime}
                   </span>
                   <span className="inline-flex items-center">
-                    <FaFileAlt className="mr-2 text-xs text-primary" />
+                    <FaFileAlt className="mr-1.5 text-primary text-[11px]" />
                     {words}
                   </span>
                 </div>
 
-                {/* Main Article Image */}
+                {/* Main Feature Image */}
                 {image && (
-                  <div className="relative mb-10 overflow-hidden rounded-2xl bg-slate-100 shadow-md dark:bg-slate-800">
+                  <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200/80 shadow-lg dark:border-slate-800">
                     <ImageFallback
                       src={image}
                       height={500}
                       width={1000}
-                      alt={title || "Post Image"}
+                      alt={title}
                       className="w-full object-cover"
-                      priority
+                      priority={true}
                     />
                   </div>
                 )}
+
+                {/* Interactive Article Toolbar (Audio Reader + Font Size + Print) */}
+                <ArticleToolbar
+                  title={title}
+                  content={content}
+                  currentFontSize={fontSize}
+                  onFontSizeChange={setFontSize}
+                />
 
                 {config.settings.InnerPaginationOptions.enableTop && (
                   <div className="mb-6">
@@ -151,9 +175,12 @@ const PostSingle: React.FC<PostSingleProps> = ({
                 <TableOfContents content={content} />
 
                 {/* Article Content */}
-                <div className="content mb-12 leading-relaxed">
+                <div className="content mb-12 transition-all duration-200" style={fontSizeStyle}>
                   {mdxChildren}
                 </div>
+
+                {/* Article Reader Summary Statistics */}
+                <ArticleStats words={words} readTime={readTime} />
 
                 {config.settings.InnerPaginationOptions.enableBottom && (
                   <div className="mt-8 border-t border-slate-100 pt-6 dark:border-slate-800">

@@ -222,7 +222,7 @@ export default async function HomePage() {
               {recent_posts.enable && (
                 <div className="mb-12">
                   <h2 className="section-title text-2xl font-extrabold tracking-tight">
-                    {recent_posts.title || "Artikel Terbaru"}
+                    {recent_posts.title || "Artikel Terkini"}
                   </h2>
                   <div className="row">
                     {sortPostByDate.slice(0, showPosts).map((post: PostItem) => (

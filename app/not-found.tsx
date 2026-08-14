@@ -1,13 +1,11 @@
 import React from "react";
 import NotFound from "@layouts/404";
 import Base from "@layouts/Baseof";
-import { getRegularPage } from "@lib/contentParser";
 
-export default async function NotFoundPage() {
-  const notFoundData = await getRegularPage("404");
+export default function NotFoundPage() {
   return (
     <Base title="Halaman Tidak Ditemukan">
-      <NotFound data={notFoundData} />
+      <NotFound />
     </Base>
   );
 }

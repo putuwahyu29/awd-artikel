@@ -6,6 +6,7 @@ import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
 import { slugify } from "@lib/utils/textConverter";
 import Post from "@partials/Post";
+import { notFound } from "next/navigation";
 import { PostItem } from "@/types";
 
 const { blog_folder } = config.settings;
@@ -29,6 +30,10 @@ export default async function CategoryPage({
       slugify(cat)?.includes(category)
     )
   );
+
+  if (filterPosts.length === 0) {
+    notFound();
+  }
   const categories = getTaxonomy(`content/${blog_folder}`, "categories");
 
   const categoriesWithPostsCount = categories

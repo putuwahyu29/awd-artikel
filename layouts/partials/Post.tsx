@@ -7,6 +7,8 @@ import wordCount from "@lib/utils/wordCount";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt, FaArrowRight, FaRegClock, FaStar, FaFileAlt } from "react-icons/fa";
 import { PostItem } from "@/types";
+import BookmarkButton from "@layouts/components/BookmarkButton";
+import ReadBadge from "@layouts/components/ReadBadge";
 
 interface PostProps {
   post: PostItem;
@@ -59,11 +61,14 @@ const Post: React.FC<PostProps> = ({ post }) => {
           ))}
         </ul>
 
-        {post.frontmatter.featured && (
-          <div className="absolute right-3 top-3 z-10 inline-flex items-center rounded-full bg-amber-500/95 px-2.5 py-1 text-[10px] font-bold text-white shadow-md backdrop-blur-md">
-            <FaStar className="mr-1 text-[9px]" /> Unggulan
-          </div>
-        )}
+        <div className="absolute right-3 top-3 z-10 flex items-center space-x-1.5">
+          <BookmarkButton slug={post.slug} />
+          {post.frontmatter.featured && (
+            <div className="inline-flex items-center rounded-full bg-amber-500/95 px-2.5 py-1 text-[10px] font-bold text-white shadow-md backdrop-blur-md">
+              <FaStar className="mr-1 text-[9px]" /> Unggulan
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Card Content Body */}
@@ -88,6 +93,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
             <FaFileAlt className="mr-1.5 text-[10px] text-primary" />
             {words}
           </span>
+          <ReadBadge slug={post.slug} />
         </div>
 
         {/* Title */}
