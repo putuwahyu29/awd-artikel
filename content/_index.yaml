@@ -1,14 +1,14 @@
 banner:
-  title: Awd Artikel
+  title: Wawasan Teknologi, Linux, & Web Development
+  title_small: "Temukan tutorial praktis, panduan DevOps, serta eksplorasi teknologi terbaru."
   content: >-
-    Di sini, Anda akan menemukan banyak artikel yang menarik dan informatif.
-    Berbagai artikel tersebut berfokus pada topik mengenai teknologi.
+    Eksplorasi kumpulan artikel mendalam seputar sistem operasi Linux, homelab Proxmox VE, otomatisasi cloud GCP, dan rekayasa perangkat lunak modern.
   image_enable: true
   image: /images/banner/image.svg
   button:
     enable: true
-    label: Tentang Penulis
-    link: https://awd.my.id
+    label: Jelajahi Artikel
+    link: "/posts"
 featured_posts:
   enable: true
   title: Artikel Unggulan

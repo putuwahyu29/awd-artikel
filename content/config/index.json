@@ -31,8 +31,12 @@
   },
   "widgets": {
     "about": {
-      "enable": false,
-      "content": "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper."
+      "enable": true,
+      "title": "Tentang Penulis",
+      "name": "I Putu Agus Wahyu Dupayana",
+      "role": "Software Engineer & Content Creator",
+      "avatar": "/images/site/foto-profil.jpg",
+      "bio": "Software Engineer yang berfokus pada pembangunan sistem web berkinerja tinggi, integrasi LLM & AI Systems, pengelolaan server Proxmox VE & Docker, serta otomatisasi cloud GCP."
     },
     "featured_posts": {
       "enable": true,

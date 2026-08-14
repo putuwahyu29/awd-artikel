@@ -31,15 +31,17 @@ export default async function CategoryPage({
   );
   const categories = getTaxonomy(`content/${blog_folder}`, "categories");
 
-  const categoriesWithPostsCount = categories.map((cat: string) => {
-    const filteredPosts = posts.filter((post: PostItem) =>
-      post.frontmatter.categories?.map((e: string) => slugify(e)).includes(cat)
-    );
-    return {
-      name: cat,
-      posts: filteredPosts.length,
-    };
-  });
+  const categoriesWithPostsCount = categories
+    .map((cat: string) => {
+      const filteredPosts = posts.filter((post: PostItem) =>
+        post.frontmatter.categories?.map((e: string) => slugify(e)).includes(cat)
+      );
+      return {
+        name: cat,
+        posts: filteredPosts.length,
+      };
+    })
+    .filter((cat: { name: string; posts: number }) => cat.posts > 0);
 
   return (
     <Base title={`Kategori ${category}`}>

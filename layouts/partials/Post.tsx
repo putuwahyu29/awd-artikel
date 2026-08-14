@@ -32,24 +32,26 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const categories = post.frontmatter.categories || [];
 
   return (
-    <article className="post group flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-xl dark:border-darkmode-border/60 dark:bg-darkmode-theme-dark/40">
+    <article className="post group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-primary/40 hover:shadow-2xl hover:shadow-blue-500/10 dark:border-slate-800/80 dark:bg-slate-900/70">
       {/* Image Thumbnail */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-gray-100 dark:bg-darkmode-theme-dark/80">
+      <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
         {post.frontmatter.image && (
           <ImageFallback
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             src={post.frontmatter.image}
             alt={post.frontmatter.title}
             width={405}
             height={228}
           />
         )}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        
         <ul className="absolute left-3 top-3 flex flex-wrap items-center gap-1.5 z-10">
           {categories.map((tag: string, index: number) => (
             <li key={"tag-" + index}>
               <Link
                 href={`/categories/${tag.replace(" ", "-").toLowerCase()}`}
-                className="inline-flex items-center rounded-full bg-primary/95 px-3 py-1 text-[11px] font-semibold tracking-wide text-white shadow-sm backdrop-blur-md transition-all hover:bg-primary"
+                className="inline-flex items-center rounded-full bg-primary border border-white/20 px-3 py-1 text-[11px] font-bold text-white shadow-md shadow-primary/20 backdrop-blur-md transition-all hover:bg-blue-600 hover:scale-105 active:scale-95"
               >
                 {tag}
               </Link>
@@ -58,16 +60,16 @@ const Post: React.FC<PostProps> = ({ post }) => {
         </ul>
 
         {post.frontmatter.featured && (
-          <div className="absolute right-3 top-3 z-10 inline-flex items-center rounded-full bg-amber-500/90 px-2.5 py-1 text-[10px] font-bold text-white shadow-md backdrop-blur-md">
+          <div className="absolute right-3 top-3 z-10 inline-flex items-center rounded-full bg-amber-500/95 px-2.5 py-1 text-[10px] font-bold text-white shadow-md backdrop-blur-md">
             <FaStar className="mr-1 text-[9px]" /> Unggulan
           </div>
         )}
       </div>
 
       {/* Card Content Body */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         {/* Meta Author, Date, Reading Time & Word Count */}
-        <div className="mb-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 dark:text-darkmode-light/70">
+        <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-500 dark:text-slate-400">
           <span className="inline-flex items-center font-medium">
             <FaUserAlt className="mr-1.5 text-[10px] text-primary" />
             {author}
@@ -89,7 +91,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
         </div>
 
         {/* Title */}
-        <h3 className="h5 mb-2 font-bold leading-snug text-dark transition-colors group-hover:text-primary dark:text-darkmode-light">
+        <h3 className="mb-2.5 text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-primary dark:text-slate-100">
           <Link
             href={`/${blog_folder}/${post.slug}`}
             className="block hover:text-primary"
@@ -99,12 +101,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
         </h3>
 
         {/* Description */}
-        <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-darkmode-text/80 line-clamp-3">
+        <p className="mb-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300/80 line-clamp-3">
           {descriptionText}...
         </p>
 
         {/* Action Link at Bottom */}
-        <div className="mt-auto pt-2 border-t border-gray-100 dark:border-darkmode-border/30">
+        <div className="mt-auto pt-3 border-t border-slate-100 dark:border-slate-800/80">
           <Link
             href={`/${blog_folder}/${post.slug}`}
             className="inline-flex items-center text-xs font-bold text-primary transition-all group-hover:translate-x-1"

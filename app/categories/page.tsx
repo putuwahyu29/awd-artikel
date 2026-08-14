@@ -13,15 +13,17 @@ const { blog_folder } = config.settings;
 export default async function CategoriesPage() {
   const posts = getSinglePage(`content/${blog_folder}`);
   const categories = getTaxonomy(`content/${blog_folder}`, "categories");
-  const categoriesWithPostsCount = categories.map((category: string) => {
-    const filteredPosts = posts.filter((post: PostItem) =>
-      post.frontmatter.categories?.map((e: string) => slugify(e)).includes(category)
-    );
-    return {
-      name: category,
-      posts: filteredPosts.length,
-    };
-  });
+  const categoriesWithPostsCount = categories
+    .map((category: string) => {
+      const filteredPosts = posts.filter((post: PostItem) =>
+        post.frontmatter.categories?.map((e: string) => slugify(e)).includes(category)
+      );
+      return {
+        name: category,
+        posts: filteredPosts.length,
+      };
+    })
+    .filter((cat: { name: string; posts: number }) => cat.posts > 0);
 
   return (
     <Base title={"Semua Kategori"}>

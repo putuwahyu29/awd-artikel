@@ -6,6 +6,7 @@ import Tab from "./Tab";
 import Tabs from "./Tabs";
 import Video from "./Video";
 import Youtube from "./Youtube";
+import { CodeBlockPre } from "@layouts/components/CodeBlockWrapper";
 
 const shortcodes = {
   Button,
@@ -16,6 +17,7 @@ const shortcodes = {
   Notice,
   Code,
   Youtube,
+  pre: CodeBlockPre,
 };
 
 export default shortcodes;

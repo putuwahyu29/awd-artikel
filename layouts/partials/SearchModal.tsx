@@ -138,7 +138,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ searchModal, setSearchModal }
 
   if (!searchModal || !mounted) return null;
 
-  const categories = ["Semua", "Chrome OS", "Proxmox", "Laravel", "Open Source", "MongoDB"];
+  const categories = ["Semua", "Chrome OS", "Proxmox", "DevOps", "Open Source", "MongoDB"];
 
   return createPortal(
     <div
@@ -220,7 +220,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ searchModal, setSearchModal }
               <div className="px-3 py-1 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">
                 <span>
                   {!input.trim() && activeCategory === "Semua"
-                    ? "⚡ Rekomendasi Artikel Terkini"
+                    ? "Rekomendasi Artikel Terkini"
                     : `${displayedResults.length} Hasil Ditemukan`}
                 </span>
                 {input.trim() && (

@@ -40,7 +40,7 @@ const HighlightedCode: React.FC<HighlightedCodeProps> = ({ children, language })
         ) : (
           <>
             <FaCopy className="text-xs" />
-            <span>Copy</span>
+            <span>Salin Kode</span>
           </>
         )}
       </button>

@@ -30,25 +30,96 @@ export default function Header() {
     setShowMenu(false);
   }, [pathname]);
 
+  // Global shortcut (Cmd+K / Ctrl+K) to toggle search modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchModal((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <header className="header">
-      <nav className="navbar container px-3 sm:px-8">
+      <nav className="navbar container px-4 sm:px-8">
         <div className="order-0">
           <Logo />
         </div>
-        <div className="flex items-center space-x-3 xl:space-x-8">
+        <div className="flex items-center space-x-2.5 sm:space-x-4">
+          {/* Desktop Navigation Links */}
+          <ul
+            id="nav-menu"
+            className="hidden lg:flex items-center space-x-1 xl:space-x-2"
+          >
+            {main.map((menuItem: any, i: number) => (
+              <React.Fragment key={`menu-${i}`}>
+                {menuItem.hasChildren ? (
+                  <li className="nav-item nav-dropdown group relative">
+                    <span
+                      className={`nav-link ${
+                        menuItem.children
+                          ?.map((c: any) => c.url)
+                          .includes(pathname) ? "active" : ""
+                      } inline-flex items-center cursor-pointer`}
+                    >
+                      {menuItem.name}
+                      <svg
+                        className="h-4 w-4 fill-current ml-1 transition-transform group-hover:rotate-180"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                      </svg>
+                    </span>
+                    <ul className="nav-dropdown-list hidden transition-all duration-300 group-hover:top-[42px] group-hover:block md:invisible md:absolute md:top-[55px] md:block md:opacity-0 md:group-hover:visible md:group-hover:opacity-100">
+                      {menuItem.children?.map((child: any, j: number) => (
+                        <li
+                          className="nav-dropdown-item"
+                          key={`children-${j}`}
+                        >
+                          <Link
+                            href={child.url}
+                            className={`nav-dropdown-link block ${
+                              pathname === child.url ? "active" : ""
+                            }`}
+                          >
+                            {child.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <Link
+                      href={menuItem.url}
+                      className={`nav-link block ${
+                        pathname === menuItem.url ? "active" : ""
+                      }`}
+                    >
+                      {menuItem.name}
+                    </Link>
+                  </li>
+                )}
+              </React.Fragment>
+            ))}
+          </ul>
+
+          {/* Mobile Slide-Out Drawer */}
           <div
-            className={`collapse-menu ${
+            className={`fixed right-0 top-0 z-50 mx-0 h-[100vh] w-full max-w-[320px] flex flex-col justify-start border-l border-slate-200 bg-white/95 p-6 shadow-2xl backdrop-blur-2xl transition-transform duration-300 ease-in-out dark:border-slate-800 dark:bg-slate-900/95 lg:hidden ${
               !showMenu
                 ? "translate-x-full invisible opacity-0 pointer-events-none"
                 : "translate-x-0 visible opacity-100 pointer-events-auto"
-            } lg:flex lg:translate-x-0 lg:visible lg:opacity-100 lg:pointer-events-auto`}
+            }`}
           >
             {/* Mobile Drawer Top Header Bar */}
-            <div className="flex items-center justify-between border-b border-gray-100 pb-4 dark:border-darkmode-border/40 lg:hidden">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
               <Logo />
               <button
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary/10 hover:text-primary dark:bg-darkmode-theme-dark dark:text-darkmode-light"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-primary/10 hover:text-primary dark:bg-slate-800 dark:text-slate-200"
                 onClick={() => setShowMenu(false)}
                 aria-label="Tutup Menu"
               >
@@ -56,84 +127,39 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Navigation Menu Links */}
-            <ul
-              id="nav-menu"
-              className="navbar-nav w-full md:w-auto md:space-x-1 lg:flex xl:space-x-2"
-            >
+            {/* Mobile Navigation Links */}
+            <ul className="space-y-1.5 mt-6">
               {main.map((menuItem: any, i: number) => (
-                <React.Fragment key={`menu-${i}`}>
-                  {menuItem.hasChildren ? (
-                    <li className="nav-item nav-dropdown group relative">
-                      <span
-                        className={`nav-link ${
-                          menuItem.children
-                            ?.map((c: any) => c.url)
-                            .includes(pathname) ? "active" : ""
-                        } inline-flex items-center`}
-                      >
-                        {menuItem.name}
-                        <svg
-                          className="h-4 w-4 fill-current ml-1"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                      </span>
-                      <ul className="nav-dropdown-list hidden transition-all duration-300 group-hover:top-[46px] group-hover:block md:invisible md:absolute md:top-[60px] md:block md:opacity-0 md:group-hover:visible md:group-hover:opacity-100">
-                        {menuItem.children?.map((child: any, j: number) => (
-                          <li
-                            className="nav-dropdown-item"
-                            key={`children-${j}`}
-                          >
-                            <Link
-                              href={child.url}
-                              onClick={() => setShowMenu(false)}
-                              className={`nav-dropdown-link block ${
-                                pathname === child.url ? "active" : ""
-                              }`}
-                            >
-                              {child.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ) : (
-                    <li className="nav-item">
-                      <Link
-                        href={menuItem.url}
-                        onClick={() => setShowMenu(false)}
-                        className={`nav-link block ${
-                          pathname === menuItem.url ? "active" : ""
-                        }`}
-                      >
-                        {menuItem.name}
-                      </Link>
-                    </li>
-                  )}
-                </React.Fragment>
+                <li key={`mobile-menu-${i}`}>
+                  <Link
+                    href={menuItem.url}
+                    onClick={() => setShowMenu(false)}
+                    className={`block rounded-xl px-4 py-2.5 text-sm font-semibold capitalize transition-all ${
+                      pathname === menuItem.url
+                        ? "bg-primary text-white font-bold"
+                        : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    }`}
+                  >
+                    {menuItem.name}
+                  </Link>
+                </li>
               ))}
             </ul>
 
-            {/* Mobile Drawer Social Footer */}
-            <div className="border-t border-gray-100 pt-4 dark:border-darkmode-border/40 lg:border-t-0 lg:pt-0">
-              <Social source={socical} className="socials flex items-center justify-center space-x-3" />
-            </div>
           </div>
 
           <ThemeSwitcher />
 
-          {/* Header search with Cmd+K badge */}
+          {/* Header search button with Cmd+K badge */}
           <button
             type="button"
-            className="flex items-center space-x-2 rounded-full border border-border/60 bg-gray-50 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-all hover:border-primary/40 hover:bg-gray-100 hover:text-primary dark:border-darkmode-border/60 dark:bg-darkmode-theme-dark/50 dark:text-darkmode-light/80 dark:hover:bg-darkmode-theme-dark"
+            className="flex items-center space-x-2 rounded-full border border-slate-200/80 bg-slate-100/60 px-3.5 py-1.5 text-xs font-medium text-slate-600 transition-all hover:border-primary/40 hover:bg-white hover:text-primary hover:shadow-sm dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-primary"
             onClick={() => setSearchModal(true)}
             aria-label="Cari Artikel (Ctrl+K)"
           >
-            <IoSearch className="text-sm" />
-            <span className="hidden md:inline">Cari...</span>
-            <kbd className="hidden rounded bg-gray-200/80 px-1.5 py-0.5 text-[10px] font-bold text-gray-500 dark:bg-darkmode-border dark:text-darkmode-light/70 sm:inline-block">
+            <IoSearch className="text-sm text-primary" />
+            <span className="hidden md:inline font-semibold">Cari...</span>
+            <kbd className="hidden rounded-md bg-slate-200/80 px-1.5 py-0.5 text-[10px] font-bold text-slate-500 shadow-xs dark:bg-slate-700 dark:text-slate-300 sm:inline-block">
               ⌘K
             </kbd>
           </button>
@@ -141,7 +167,7 @@ export default function Header() {
           {/* Mobile Menu Hamburger Button */}
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-md transition-transform active:scale-95 lg:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white shadow-md shadow-primary/25 transition-transform active:scale-95 lg:hidden"
             aria-label="Buka Menu"
           >
             {showMenu ? (
@@ -162,7 +188,7 @@ export default function Header() {
       {showMenu && (
         <div
           onClick={() => setShowMenu(false)}
-          className="header-backdrop fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+          className="header-backdrop fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm lg:hidden"
         />
       )}
     </header>

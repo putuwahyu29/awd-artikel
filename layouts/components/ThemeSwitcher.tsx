@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import config from "@config/index.json";
 import { useTheme } from "next-themes";
+import { IoSunny, IoMoon } from "react-icons/io5";
 
 const ThemeSwitcher: React.FC = () => {
   const { theme_switcher } = config.settings;
@@ -10,38 +11,23 @@ const ThemeSwitcher: React.FC = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
   useEffect(() => setMounted(true), []);
 
+  if (!theme_switcher) return null;
+
+  const isDark = mounted && (theme === "dark" || resolvedTheme === "dark");
+
   return (
-    <>
-      {theme_switcher && (
-        <button
-          aria-label="Toggle Theme"
-          type="button"
-          className="ml-1 mr-1 h-8 w-8 rounded p-1 sm:ml-4"
-          onClick={() =>
-            setTheme(
-              theme === "dark" || resolvedTheme === "dark" ? "light" : "dark"
-            )
-          }
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="text-gray-900 dark:text-gray-100"
-          >
-            {mounted && (theme === "dark" || resolvedTheme === "dark") ? (
-              <path
-                fillRule="evenodd"
-                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                clipRule="evenodd"
-              />
-            ) : (
-              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-            )}
-          </svg>
-        </button>
+    <button
+      aria-label="Ganti Tema Tampilan"
+      type="button"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-slate-100/80 text-slate-700 transition-all duration-300 hover:border-primary/40 hover:bg-slate-200/80 hover:text-primary dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-700/80 dark:hover:text-amber-400 active:scale-95"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+    >
+      {isDark ? (
+        <IoSunny className="text-lg text-amber-400 transition-transform duration-300 hover:rotate-45" />
+      ) : (
+        <IoMoon className="text-base text-slate-700 transition-transform duration-300 hover:-rotate-12" />
       )}
-    </>
+    </button>
   );
 };
 

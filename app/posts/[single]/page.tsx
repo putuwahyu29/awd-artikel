@@ -6,6 +6,10 @@ import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
 import { PostItem } from "@/types";
 
+import { slugify } from "@lib/utils/textConverter";
+
+import { notFound } from "next/navigation";
+
 const { blog_folder } = config.settings;
 
 export async function generateStaticParams() {
@@ -21,29 +25,39 @@ export default async function ArticlePage({
   params: Promise<{ single: string }>;
 }) {
   const { single } = await params;
+  const decodedSlug = decodeURIComponent(single);
   const posts = getSinglePage(`content/${blog_folder}`);
-  const post = posts.find((p: PostItem) => p.slug === single);
+  const post = posts.find(
+    (p: PostItem) =>
+      p.slug === single ||
+      p.slug === decodedSlug ||
+      slugify(p.slug) === slugify(decodedSlug)
+  );
 
   if (!post) {
-    return null;
+    notFound();
   }
 
-  const relatedPosts = posts.filter((p: PostItem) =>
-    post.frontmatter.categories?.some((cate: string) =>
-      p.frontmatter.categories?.includes(cate)
-    )
+  const relatedPosts = posts.filter(
+    (p: PostItem) =>
+      p.slug !== post.slug &&
+      post.frontmatter.categories?.some((cate: string) =>
+        p.frontmatter.categories?.includes(cate)
+      )
   );
 
   const categories = getTaxonomy(`content/${blog_folder}`, "categories");
-  const categoriesWithPostsCount = categories.map((category: string) => {
-    const filteredPosts = posts.filter((postItem: PostItem) =>
-      postItem.frontmatter.categories?.includes(category)
-    );
-    return {
-      name: category,
-      posts: filteredPosts.length,
-    };
-  });
+  const categoriesWithPostsCount = categories
+    .map((category: string) => {
+      const filteredPosts = posts.filter((postItem: PostItem) =>
+        postItem.frontmatter.categories?.map((e: string) => slugify(e)).includes(category)
+      );
+      return {
+        name: category,
+        posts: filteredPosts.length,
+      };
+    })
+    .filter((cat: { name: string; posts: number }) => cat.posts > 0);
 
   return (
     <PostSingle

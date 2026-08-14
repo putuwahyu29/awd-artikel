@@ -3,7 +3,7 @@ body.menu-open {
 }
 
 .header {
-  @apply fixed top-0 left-0 right-0 z-40 border-b border-border/40 bg-body/95 backdrop-blur-md py-4 transition-all duration-300 dark:border-darkmode-border/40 dark:bg-darkmode-body/95 shadow-xs;
+  @apply fixed top-0 left-0 right-0 z-40 border-b border-slate-200/60 bg-white/80 backdrop-blur-xl py-3.5 transition-all duration-300 dark:border-slate-800/80 dark:bg-slate-900/80 shadow-xs;
 }
 
 // navbar items
@@ -12,33 +12,47 @@ body.menu-open {
 }
 
 .collapse-menu {
-  @apply fixed right-0 top-0 z-50 mx-0 h-[100vh] w-full max-w-[300px] flex flex-col justify-between border-l border-border bg-white p-6 shadow-2xl transition-all duration-300 ease-in-out dark:border-darkmode-border dark:bg-darkmode-body lg:static lg:flex lg:flex-row lg:h-auto lg:w-auto lg:max-w-full lg:space-x-4 lg:border-l-0 lg:bg-transparent lg:p-0 lg:shadow-none xl:space-x-8;
+  @apply fixed right-0 top-0 z-50 mx-0 h-[100vh] w-full max-w-[320px] flex flex-col justify-between border-l border-slate-200 bg-white/95 p-6 shadow-2xl backdrop-blur-2xl transition-all duration-300 ease-in-out dark:border-slate-800 dark:bg-slate-900/95 lg:static lg:flex lg:flex-row lg:h-auto lg:w-auto lg:max-w-full lg:space-x-2 lg:border-l-0 lg:p-0 lg:shadow-none xl:space-x-4;
+
+  @media (min-width: 992px) {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
 }
 
 .navbar-brand {
-  @apply text-xl font-semibold text-dark;
+  @apply text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white;
   image {
     @apply max-h-full max-w-full;
   }
 }
 
 .navbar-nav {
-  @apply mt-6 lg:mt-0 space-y-1.5 lg:space-y-0;
+  @apply mt-6 lg:mt-0 space-y-1.5 lg:space-y-0 items-center;
+  @media (min-width: 992px) {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
 }
 
 .nav-item {
   @apply mb-0 text-left lg:mb-0;
+  background-color: transparent !important;
+  background: transparent !important;
 
   &.active {
-    @apply bg-transparent;
+    background-color: transparent !important;
+    background: transparent !important;
   }
 }
 
 .nav-link {
-  @apply rounded-xl px-4 py-3 text-left font-secondary text-sm font-semibold capitalize text-dark transition-all hover:bg-primary/10 hover:text-primary dark:text-darkmode-light lg:rounded-full lg:px-4 lg:py-2 lg:text-center xl:px-5;
+  @apply rounded-full px-4 py-2.5 text-left font-secondary text-sm font-semibold capitalize text-slate-700 transition-all duration-200 hover:bg-blue-50 hover:text-primary dark:text-slate-200 dark:hover:bg-slate-800/80 dark:hover:text-primary lg:px-4 lg:py-2 lg:text-center xl:px-5;
 
   &.active {
-    @apply bg-primary/10 text-primary font-bold dark:bg-primary/20 dark:text-primary lg:bg-primary lg:text-white lg:dark:bg-primary lg:dark:text-white;
+    @apply bg-primary text-white font-bold shadow-md shadow-primary/25 dark:bg-primary dark:text-white;
   }
 }
 
@@ -47,29 +61,30 @@ body.menu-open {
 }
 
 .nav-dropdown-list {
-  @apply z-10 rounded-lg  border border-transparent bg-body p-4 shadow dark:border-darkmode-border dark:bg-black;
+  @apply z-10 rounded-2xl border border-slate-200/80 bg-white/95 p-3 shadow-xl backdrop-blur-lg dark:border-slate-800/80 dark:bg-slate-900/95;
 }
 
 .nav-dropdown-item {
-  @apply mb-1.5;
+  @apply mb-1;
 }
 
 .nav-dropdown-link {
-  @apply min-w-[150px] rounded py-2.5 px-3.5 text-base font-semibold  text-dark transition hover:bg-primary/10 hover:text-primary dark:text-darkmode-light;
+  @apply min-w-[160px] rounded-xl py-2 px-3.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-blue-50 hover:text-primary dark:text-slate-200 dark:hover:bg-slate-800/80;
 
   &.active {
-    @apply bg-primary/10 text-primary;
+    @apply bg-primary/10 text-primary font-bold dark:bg-primary/20;
   }
 }
 
 // search style
 .search-icon {
-  @apply inline-block h-10 w-10 cursor-pointer rounded-full bg-primary p-2.5 text-xl text-white;
+  @apply inline-block h-10 w-10 cursor-pointer rounded-full bg-primary p-2.5 text-xl text-white shadow-md shadow-primary/30 transition-transform active:scale-95;
 }
 
 .light .menu-open {
   .border-border,
   &.border-border {
-    @apply border-darkmode-border;
+    @apply border-slate-700;
   }
 }
+
