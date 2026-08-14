@@ -5,6 +5,7 @@ import menu from "@config/menu/index.json";
 import socical from "@config/social/index.json";
 import Social from "@layouts/components/Social";
 import ThemeSwitcher from "@layouts/components/ThemeSwitcher";
+import LanguageSwitcher from "@layouts/components/LanguageSwitcher";
 import BookmarkModal from "@layouts/components/BookmarkModal";
 import SearchModal from "@partials/SearchModal";
 import { useReadingTracker } from "@lib/utils/readingTracker";
@@ -126,34 +127,39 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* Bookmark Drawer Button */}
+          {/* Bookmark Drawer Button - Hidden on small mobile screens, circular below md */}
           <button
             type="button"
             onClick={() => setBookmarkModal(true)}
-            className="relative flex items-center space-x-1.5 rounded-full border border-slate-200/80 bg-slate-100/60 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-all hover:border-amber-400 hover:bg-white hover:text-amber-500 hover:shadow-sm dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-amber-400"
+            className="hidden sm:flex relative h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-slate-100/80 text-xs font-semibold text-slate-700 transition-all duration-300 hover:border-amber-400 hover:bg-white hover:text-amber-500 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-amber-400 active:scale-95 md:h-auto md:w-auto md:px-3 md:py-1.5 md:space-x-1.5"
             title="Daftar Bacaan Saya (Artikel Tersimpan)"
           >
-            <IoBookmark className="text-sm text-amber-500" />
-            <span className="hidden sm:inline font-bold">Daftar Bacaan</span>
+            <IoBookmark className="text-base text-amber-500 shrink-0" />
+            <span className="hidden md:inline font-bold">Daftar Bacaan</span>
             {bookmarks.length > 0 && (
-              <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-amber-500 px-1 text-[10px] font-bold text-white shadow-xs">
+              <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-amber-500 px-1 text-[10px] font-bold text-white shadow-xs md:relative md:top-auto md:right-auto">
                 {bookmarks.length}
               </span>
             )}
           </button>
 
+          {/* Language Switcher - Hidden on small mobile screens */}
+          <div className="hidden sm:inline-flex">
+            <LanguageSwitcher />
+          </div>
+
           <ThemeSwitcher />
 
-          {/* Header search button with Cmd+K badge */}
+          {/* Header search button */}
           <button
             type="button"
-            className="flex items-center space-x-2 rounded-full border border-slate-200/80 bg-slate-100/60 px-3.5 py-1.5 text-xs font-medium text-slate-600 transition-all hover:border-primary/40 hover:bg-white hover:text-primary hover:shadow-sm dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-primary"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-slate-100/80 text-slate-700 transition-all duration-300 hover:border-primary/40 hover:bg-slate-200/80 hover:text-primary dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-700/80 dark:hover:text-primary active:scale-95 md:h-auto md:w-auto md:px-3.5 md:py-1.5 md:space-x-2"
             onClick={() => setSearchModal(true)}
             aria-label="Cari Artikel (Ctrl+K)"
           >
-            <IoSearch className="text-sm text-primary" />
-            <span className="hidden md:inline font-semibold">Cari...</span>
-            <kbd className="hidden rounded-md bg-slate-200/80 px-1.5 py-0.5 text-[10px] font-bold text-slate-500 shadow-xs dark:bg-slate-700 dark:text-slate-300 sm:inline-block">
+            <IoSearch className="text-base text-primary" />
+            <span className="hidden md:inline text-xs font-semibold">Cari...</span>
+            <kbd className="hidden rounded-md bg-slate-200/80 px-1.5 py-0.5 text-[10px] font-bold text-slate-500 shadow-xs dark:bg-slate-700 dark:text-slate-300 md:inline-block">
               ⌘K
             </kbd>
           </button>
@@ -208,24 +214,80 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Mobile Navigation Links */}
-            <ul className="space-y-1.5 mt-6">
-              {main.map((menuItem: any, i: number) => (
-                <li key={`mobile-menu-${i}`}>
-                  <Link
-                    href={menuItem.url}
-                    onClick={() => setShowMenu(false)}
-                    className={`block rounded-xl px-4 py-2.5 text-sm font-semibold capitalize transition-all ${
-                      pathname === menuItem.url
-                        ? "bg-primary text-white font-bold"
-                        : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                    }`}
+            {/* Mobile Drawer Body */}
+            <div className="flex-1 overflow-y-auto py-6 space-y-6">
+              {/* Mobile Navigation Links */}
+              <ul className="space-y-1">
+                {main.map((menuItem: any, i: number) => (
+                  <li key={`mobile-menu-${i}`}>
+                    <Link
+                      href={menuItem.url}
+                      onClick={() => setShowMenu(false)}
+                      className={`block rounded-xl px-4 py-2.5 text-sm font-semibold capitalize transition-all ${
+                        pathname === menuItem.url
+                          ? "bg-primary text-white font-bold shadow-md shadow-primary/20"
+                          : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                      }`}
+                    >
+                      {menuItem.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Mobile Features & Tools Section */}
+              <div className="border-t border-slate-100 pt-6 dark:border-slate-800 space-y-3">
+                <p className="px-4 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                  Fitur & Alat
+                </p>
+
+                <div className="flex flex-col space-y-1.5 px-1">
+                  {/* Bookmark Button */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowMenu(false);
+                      setBookmarkModal(true);
+                    }}
+                    className="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 transition-colors"
                   >
-                    {menuItem.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                    <div className="flex items-center space-x-2.5">
+                      <IoBookmark className="text-base text-amber-500" />
+                      <span>Daftar Bacaan Saya</span>
+                    </div>
+                    {bookmarks.length > 0 && (
+                      <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-amber-500 px-1.5 text-[10px] font-bold text-white">
+                        {bookmarks.length}
+                      </span>
+                    )}
+                  </button>
+
+                  {/* Language Switcher Row */}
+                  <div className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200">
+                    <span>Bahasa / Language</span>
+                    <LanguageSwitcher />
+                  </div>
+
+                  {/* Search Button */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowMenu(false);
+                      setSearchModal(true);
+                    }}
+                    className="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <div className="flex items-center space-x-2.5">
+                      <IoSearch className="text-base text-primary" />
+                      <span>Cari Artikel</span>
+                    </div>
+                    <kbd className="rounded bg-slate-200/80 px-1.5 py-0.5 text-[10px] font-bold text-slate-500 dark:bg-slate-700 dark:text-slate-300">
+                      ⌘K
+                    </kbd>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>,
         document.body
