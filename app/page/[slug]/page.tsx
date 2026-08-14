@@ -7,8 +7,34 @@ import { markdownify } from "@lib/utils/textConverter";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import Post from "@partials/Post";
 import { PostItem } from "@/types";
+import type { Metadata } from "next";
 
 const { blog_folder, pagination } = config.settings;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const currentPage = resolvedParams?.slug || "1";
+  const { base_url, title: siteTitle } = config.site;
+  const title = `Halaman ${currentPage}`;
+  const description = `Daftar artikel ${siteTitle} - Halaman ${currentPage}.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${base_url}/page/${currentPage}`,
+    },
+    openGraph: {
+      title: `${title} | ${siteTitle}`,
+      description,
+      url: `${base_url}/page/${currentPage}`,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const getAllSlug = getSinglePage(`content/${blog_folder}`);

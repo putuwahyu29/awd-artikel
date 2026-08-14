@@ -7,8 +7,22 @@ import Link from "next/link";
 import { getSinglePage } from "@lib/contentParser";
 import { FaFolder } from "react-icons/fa";
 import { PostItem } from "@/types";
+import type { Metadata } from "next";
 
 const { blog_folder } = config.settings;
+
+export const metadata: Metadata = {
+  title: "Semua Kategori",
+  description: "Daftar semua kategori topik dan artikel yang tersedia di " + config.site.title,
+  alternates: {
+    canonical: `${config.site.base_url}/categories`,
+  },
+  openGraph: {
+    title: `Semua Kategori | ${config.site.title}`,
+    description: "Daftar semua kategori topik dan artikel yang tersedia di " + config.site.title,
+    url: `${config.site.base_url}/categories`,
+  },
+};
 
 export default async function CategoriesPage() {
   const posts = getSinglePage(`content/${blog_folder}`);

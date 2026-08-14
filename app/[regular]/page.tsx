@@ -3,7 +3,65 @@ import NotFound from "@layouts/404";
 import Base from "@layouts/Baseof";
 import Default from "@layouts/Default";
 import { getRegularPage, getSinglePage } from "@lib/contentParser";
+import { plainify } from "@lib/utils/textConverter";
+import config from "@config/index.json";
 import { PostItem } from "@/types";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ regular: string }>;
+}): Promise<Metadata> {
+  const { regular } = await params;
+  const data = await getRegularPage(regular);
+  if (!data || !data.frontmatter) return {};
+
+  const { title, meta_title, description, image, noindex, canonical } =
+    data.frontmatter;
+  const { meta_description, meta_image } = config.metadata;
+  const { base_url, title: siteTitle } = config.site;
+
+  const pageTitle = meta_title || title;
+  const pageDescription =
+    description || plainify(data.content?.slice(0, 160)) || meta_description;
+  const pageImage = image
+    ? image.startsWith("http")
+      ? image
+      : image.startsWith("/")
+      ? `${base_url}${image}`
+      : `${base_url}/${image}`
+    : `${base_url}${meta_image}`;
+  const pageUrl = canonical || `${base_url}/${regular}`;
+
+  return {
+    title: pageTitle,
+    description: pageDescription,
+    robots: noindex ? { index: false, follow: false } : undefined,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: pageUrl,
+      siteName: siteTitle,
+      type: "website",
+      images: [
+        {
+          url: pageImage,
+          alt: pageTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description: pageDescription,
+      images: [pageImage],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const slugs = getSinglePage("content");

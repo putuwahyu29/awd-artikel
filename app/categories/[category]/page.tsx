@@ -4,12 +4,55 @@ import Base from "@layouts/Baseof";
 import Sidebar from "@layouts/partials/Sidebar";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
-import { slugify } from "@lib/utils/textConverter";
+import { humanize, slugify } from "@lib/utils/textConverter";
 import Post from "@partials/Post";
 import { notFound } from "next/navigation";
 import { PostItem } from "@/types";
+import type { Metadata } from "next";
 
 const { blog_folder } = config.settings;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}): Promise<Metadata> {
+  const { category } = await params;
+  const humanizedCategory = humanize(category);
+  const { base_url, title: siteTitle } = config.site;
+  const { meta_image } = config.metadata;
+  const title = `Kategori: ${humanizedCategory}`;
+  const description = `Menampilkan semua artikel dengan topik/kategori ${humanizedCategory} di ${siteTitle}.`;
+  const url = `${base_url}/categories/${category}`;
+  const ogImage = `${base_url}${meta_image}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${title} | ${siteTitle}`,
+      description,
+      url,
+      siteName: siteTitle,
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${siteTitle}`,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const allCategories = getTaxonomy(`content/${blog_folder}`, "categories");
