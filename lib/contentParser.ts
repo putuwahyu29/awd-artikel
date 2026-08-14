@@ -11,15 +11,25 @@ export interface ParsedPage {
 
 // get list page data, ex: _index.md / _index.yaml
 export const getListPage = async (filePath: string): Promise<ParsedPage> => {
-  let targetPath = filePath;
+  let targetPath = path.isAbsolute(filePath)
+    ? filePath
+    : path.join(process.cwd(), filePath);
+
   if (!fs.existsSync(targetPath)) {
-    const yamlPath = filePath.replace(/\.(md|mdx)$/, ".yaml");
-    const mdxPath = filePath.replace(/\.md$/, ".mdx");
+    const yamlPath = targetPath.replace(/\.(md|mdx)$/, ".yaml");
+    const mdxPath = targetPath.replace(/\.md$/, ".mdx");
     if (fs.existsSync(yamlPath)) {
       targetPath = yamlPath;
     } else if (fs.existsSync(mdxPath)) {
       targetPath = mdxPath;
     }
+  }
+
+  if (!fs.existsSync(targetPath)) {
+    return {
+      frontmatter: { title: "Halaman Tidak Ditemukan" } as PostFrontmatter,
+      content: "",
+    };
   }
 
   const pageData = fs.readFileSync(targetPath, "utf-8");
@@ -36,29 +46,23 @@ export const getListPage = async (filePath: string): Promise<ParsedPage> => {
     pageDataParsed = matter(pageData) as any;
   }
 
-  const notFoundPath = fs.existsSync("content/404.mdx") ? "content/404.mdx" : "content/404.md";
-  const notFoundPage = fs.readFileSync(notFoundPath, "utf-8");
-  const notFoundDataParsed = matter(notFoundPage);
-  let frontmatter: PostFrontmatter;
-  let content: string;
-
-  if (pageDataParsed) {
-    content = pageDataParsed.content;
-    frontmatter = pageDataParsed.data;
-  } else {
-    content = notFoundDataParsed.content;
-    frontmatter = notFoundDataParsed.data as PostFrontmatter;
-  }
-
   return {
-    frontmatter,
-    content,
+    frontmatter: pageDataParsed?.data || {},
+    content: pageDataParsed?.content || "",
   };
 };
 
 // get all single pages, ex: blog/post.md or blog/post.mdx
 export const getSinglePage = (folder: string): PostItem[] => {
-  const filesPath = fs.readdirSync(folder);
+  const dirPath = path.isAbsolute(folder)
+    ? folder
+    : path.join(process.cwd(), folder);
+
+  if (!fs.existsSync(dirPath)) {
+    return [];
+  }
+
+  const filesPath = fs.readdirSync(dirPath);
   const sanitizeFiles = filesPath.filter(
     (file) => file.endsWith(".md") || file.endsWith(".mdx")
   );
@@ -67,7 +71,7 @@ export const getSinglePage = (folder: string): PostItem[] => {
   );
   const singlePages = filterSingleFiles.map((filename) => {
     const slug = filename.replace(/\.mdx?$/, "");
-    const pageData = fs.readFileSync(path.join(folder, filename), "utf-8");
+    const pageData = fs.readFileSync(path.join(dirPath, filename), "utf-8");
     const pageDataParsed = matter(pageData);
     const frontmatterString = JSON.stringify(pageDataParsed.data);
     const frontmatter: PostFrontmatter = JSON.parse(frontmatterString);
@@ -91,23 +95,16 @@ export const getSinglePage = (folder: string): PostItem[] => {
 export const getRegularPage = async (slug: string): Promise<ParsedPage> => {
   const publishedPages = getSinglePage("content");
   const pageData = publishedPages.filter((data) => data.slug === slug);
-  const notFoundPath = fs.existsSync("content/404.mdx") ? "content/404.mdx" : "content/404.md";
-  const notFoundPage = fs.readFileSync(notFoundPath, "utf-8");
-  const notFoundDataParsed = matter(notFoundPage);
-
-  let frontmatter: PostFrontmatter;
-  let content: string;
 
   if (pageData[0]) {
-    content = pageData[0].content;
-    frontmatter = pageData[0].frontmatter;
-  } else {
-    content = notFoundDataParsed.content;
-    frontmatter = notFoundDataParsed.data as PostFrontmatter;
+    return {
+      frontmatter: pageData[0].frontmatter,
+      content: pageData[0].content,
+    };
   }
 
   return {
-    frontmatter,
-    content,
+    frontmatter: { title: "Halaman Tidak Ditemukan" } as PostFrontmatter,
+    content: "",
   };
 };

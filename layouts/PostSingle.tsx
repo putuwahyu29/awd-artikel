@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import config from "@config/index.json";
 import Base from "@layouts/Baseof";
 import InnerPagination from "@layouts/components/InnerPagination";
@@ -21,6 +21,7 @@ import AuthorCard from "@layouts/components/AuthorCard";
 import ArticleToolbar from "@layouts/components/ArticleToolbar";
 import MarkAsRead from "@layouts/components/MarkAsRead";
 import ArticleStats from "@layouts/components/ArticleStats";
+import DisqusComments from "@layouts/components/DisqusComments";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -77,10 +78,19 @@ const PostSingle: React.FC<PostSingleProps> = ({
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  let disqusConfig: any = { ...config.disqus.settings };
-  disqusConfig.identifier = frontmatter.disqusId
-    ? frontmatter.disqusId
-    : config.settings.blog_folder + "/" + slug;
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const disqusShortname = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME || disqus.shortname;
+  const currentUrl = `${base_url}/${config.settings.blog_folder}/${slug}`;
+
+  const disqusConfig = {
+    url: currentUrl,
+    identifier: frontmatter.disqusId || `${config.settings.blog_folder}/${slug}`,
+    title: title,
+    language: "id",
+    ...config.disqus.settings,
+  };
 
   const [fontSize, setFontSize] = useState<"small" | "normal" | "large">("normal");
 
@@ -249,13 +259,18 @@ const PostSingle: React.FC<PostSingleProps> = ({
 
                 {/* Comments Section */}
                 <div className="mt-14 border-t border-slate-100 pt-8 dark:border-slate-800">
-                  <h3 className="section-title text-xl font-extrabold tracking-tight">Komentar</h3>
-                  {disqus.enable && (
-                    <DiscussionEmbed
-                      key={theme}
-                      shortname={disqus.shortname}
-                      config={disqusConfig}
+                  <h3 className="section-title text-xl font-extrabold tracking-tight mb-6">Komentar</h3>
+                  {disqus.enable && mounted && disqusShortname ? (
+                    <DisqusComments
+                      shortname={disqusShortname}
+                      url={disqusConfig.url}
+                      identifier={disqusConfig.identifier}
+                      title={disqusConfig.title}
                     />
+                  ) : (
+                    <p className="text-xs text-slate-500">
+                      Kolom komentar belum aktif atau shortname Disqus belum dikonfigurasi.
+                    </p>
                   )}
                 </div>
               </article>
