@@ -8,7 +8,7 @@
     "dev": "node lib/jsonGenerator.js && next dev",
     "build": "node lib/jsonGenerator.js && next build",
     "export": "npm run build && next export",
-    "lint": "eslint pages layouts",
+    "lint": "eslint app layouts",
     "start": "next start"
   },
   "dependencies": {
@@ -19,8 +19,6 @@
     "disqus-react": "^1.1.5",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
-    "section-matter": "^1.0.0",
-    "strip-bom-string": "^1.0.0",
     "marked": "^18.0.6",
     "next": "16.2.10",
     "next-mdx-remote": "^6.0.0",
@@ -35,13 +33,21 @@
     "react-syntax-highlighter": "^16.1.1",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "section-matter": "^1.0.0",
+    "strip-bom-string": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/postcss": "^4.3.2",
     "@tailwindcss/typography": "^0.5.20",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "@types/rss": "^0.0.32",
     "autoprefixer": "^10.5.3",
     "date-fns": "^4.4.0",
     "date-fns-tz": "^3.2.0",
@@ -55,6 +61,7 @@
     "sharp": "^0.35.3",
     "tailwind-bootstrap-grid": "^7.0.0",
     "tailwind-scrollbar": "^4.0.2",
-    "tailwindcss": "^4.3.2"
+    "tailwindcss": "^4.3.2",
+    "typescript": "^6.0.3"
   }
 }
