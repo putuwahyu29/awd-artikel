@@ -165,8 +165,12 @@ export default config({
         }),
         widgets: fields.object({
           about: fields.object({
-            enable: fields.checkbox({ label: "Enable About Widget" }),
-            content: fields.text({ label: "About Content", multiline: true }),
+            enable: fields.checkbox({ label: "Tampilkan Widget Profil Penulis" }),
+            title: fields.text({ label: "Judul Widget" }),
+            name: fields.text({ label: "Nama Penulis" }),
+            role: fields.text({ label: "Peran / Profesi" }),
+            avatar: fields.text({ label: "Path Foto Profil" }),
+            bio: fields.text({ label: "Biografi Penulis", multiline: true }),
           }),
           featured_posts: fields.object({
             enable: fields.checkbox({ label: "Enable Featured Posts Widget" }),

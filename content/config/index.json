@@ -21,6 +21,7 @@
     "blog_folder": "posts"
   },
   "params": {
+    "tag_manager_id": "",
     "footer_content": "Di sini, Anda akan menemukan banyak artikel yang menarik dan informatif",
     "copyright": "Awd"
   },

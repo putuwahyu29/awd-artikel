@@ -42,10 +42,10 @@ const DisqusComments: React.FC<DisqusCommentsProps> = ({
             this.language = "id";
           },
         });
-        setIsLoading(false);
       } catch (e) {
-        console.error("Disqus Reset Error:", e);
-        setHasError(true);
+        // Silently catch internal Disqus parseColor legacy warnings
+        console.warn("Disqus reset notice:", e);
+      } finally {
         setIsLoading(false);
       }
     } else {
@@ -64,7 +64,6 @@ const DisqusComments: React.FC<DisqusCommentsProps> = ({
 
       s.onload = () => setIsLoading(false);
       s.onerror = () => {
-        console.error(`Disqus Embed Error: Shortname '${shortname}' could not be loaded.`);
         setHasError(true);
         setIsLoading(false);
       };
@@ -97,7 +96,11 @@ const DisqusComments: React.FC<DisqusCommentsProps> = ({
         </div>
       )}
 
-      <div id="disqus_thread" className={hasError ? "hidden" : "block"} />
+      <div
+        id="disqus_thread"
+        className={hasError ? "hidden" : "block"}
+        style={{ minHeight: "200px" }}
+      />
     </div>
   );
 };

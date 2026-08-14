@@ -11,9 +11,12 @@ import {
   FaRedoAlt,
 } from "react-icons/fa";
 
+import BookmarkButton from "./BookmarkButton";
+
 interface ArticleToolbarProps {
   content: string;
   title: string;
+  slug: string;
   onFontSizeChange: (size: "small" | "normal" | "large") => void;
   currentFontSize: "small" | "normal" | "large";
 }
@@ -21,6 +24,7 @@ interface ArticleToolbarProps {
 const ArticleToolbar: React.FC<ArticleToolbarProps> = ({
   content,
   title,
+  slug,
   onFontSizeChange,
   currentFontSize,
 }) => {
@@ -76,31 +80,36 @@ const ArticleToolbar: React.FC<ArticleToolbarProps> = ({
 
   return (
     <div className="my-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-5 py-3 shadow-xs backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-900/60">
-      {/* Audio Speech Reader */}
-      {speechSupported && (
-        <button
-          type="button"
-          onClick={handleToggleSpeech}
-          className={`flex items-center space-x-2 rounded-full px-4 py-2 text-xs font-bold transition-all duration-300 ${
-            isPlaying
-              ? "bg-amber-500 text-white shadow-md shadow-amber-500/25 animate-pulse"
-              : "bg-primary text-white shadow-md shadow-primary/25 hover:bg-blue-600 active:scale-95"
-          }`}
-          title="Dengarkan Suara Artikel"
-        >
-          {isPlaying ? (
-            <>
-              <FaPause size={11} />
-              <span>Jeda Suara</span>
-            </>
-          ) : (
-            <>
-              <FaVolumeUp size={12} />
-              <span>Dengarkan Artikel</span>
-            </>
-          )}
-        </button>
-      )}
+      <div className="flex flex-wrap items-center gap-2">
+        {/* Audio Speech Reader */}
+        {speechSupported && (
+          <button
+            type="button"
+            onClick={handleToggleSpeech}
+            className={`flex items-center space-x-2 rounded-full px-4 py-2 text-xs font-bold transition-all duration-300 ${
+              isPlaying
+                ? "bg-amber-500 text-white shadow-md shadow-amber-500/25 animate-pulse"
+                : "bg-primary text-white shadow-md shadow-primary/25 hover:bg-blue-600 active:scale-95"
+            }`}
+            title="Dengarkan Suara Artikel"
+          >
+            {isPlaying ? (
+              <>
+                <FaPause size={11} />
+                <span>Jeda Suara</span>
+              </>
+            ) : (
+              <>
+                <FaVolumeUp size={12} />
+                <span>Dengarkan Artikel</span>
+              </>
+            )}
+          </button>
+        )}
+
+        {/* Bookmark Save Button */}
+        <BookmarkButton slug={slug} variant="toolbar" />
+      </div>
 
       {/* Font Size & Utility Buttons */}
       <div className="flex items-center space-x-3 text-xs font-semibold text-slate-600 dark:text-slate-300">

@@ -5,25 +5,44 @@ import menu from "@config/menu/index.json";
 import socical from "@config/social/index.json";
 import Social from "@layouts/components/Social";
 import ThemeSwitcher from "@layouts/components/ThemeSwitcher";
+import BookmarkModal from "@layouts/components/BookmarkModal";
 import SearchModal from "@partials/SearchModal";
+import { useReadingTracker } from "@lib/utils/readingTracker";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { IoSearch, IoClose, IoMenu } from "react-icons/io5";
+import { createPortal } from "react-dom";
+import { IoSearch, IoClose, IoMenu, IoBookmark } from "react-icons/io5";
 
 export default function Header() {
   const main: any[] = menu.main;
   const [searchModal, setSearchModal] = useState(false);
+  const [bookmarkModal, setBookmarkModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { bookmarks } = useReadingTracker();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const pathname = usePathname();
 
   useEffect(() => {
     if (showMenu) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
       document.body.classList.add("menu-open");
     } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       document.body.classList.remove("menu-open");
     }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.classList.remove("menu-open");
+    };
   }, [showMenu]);
 
   useEffect(() => {
@@ -107,46 +126,21 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* Mobile Slide-Out Drawer */}
-          <div
-            className={`fixed right-0 top-0 z-50 mx-0 h-[100vh] w-full max-w-[320px] flex flex-col justify-start border-l border-slate-200 bg-white/95 p-6 shadow-2xl backdrop-blur-2xl transition-transform duration-300 ease-in-out dark:border-slate-800 dark:bg-slate-900/95 lg:hidden ${
-              !showMenu
-                ? "translate-x-full invisible opacity-0 pointer-events-none"
-                : "translate-x-0 visible opacity-100 pointer-events-auto"
-            }`}
+          {/* Bookmark Drawer Button */}
+          <button
+            type="button"
+            onClick={() => setBookmarkModal(true)}
+            className="relative flex items-center space-x-1.5 rounded-full border border-slate-200/80 bg-slate-100/60 px-3 py-1.5 text-xs font-semibold text-slate-700 transition-all hover:border-amber-400 hover:bg-white hover:text-amber-500 hover:shadow-sm dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-amber-400"
+            title="Daftar Bacaan Saya (Artikel Tersimpan)"
           >
-            {/* Mobile Drawer Top Header Bar */}
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
-              <Logo />
-              <button
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-primary/10 hover:text-primary dark:bg-slate-800 dark:text-slate-200"
-                onClick={() => setShowMenu(false)}
-                aria-label="Tutup Menu"
-              >
-                <IoClose className="text-xl" />
-              </button>
-            </div>
-
-            {/* Mobile Navigation Links */}
-            <ul className="space-y-1.5 mt-6">
-              {main.map((menuItem: any, i: number) => (
-                <li key={`mobile-menu-${i}`}>
-                  <Link
-                    href={menuItem.url}
-                    onClick={() => setShowMenu(false)}
-                    className={`block rounded-xl px-4 py-2.5 text-sm font-semibold capitalize transition-all ${
-                      pathname === menuItem.url
-                        ? "bg-primary text-white font-bold"
-                        : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                    }`}
-                  >
-                    {menuItem.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-          </div>
+            <IoBookmark className="text-sm text-amber-500" />
+            <span className="hidden sm:inline font-bold">Daftar Bacaan</span>
+            {bookmarks.length > 0 && (
+              <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-amber-500 px-1 text-[10px] font-bold text-white shadow-xs">
+                {bookmarks.length}
+              </span>
+            )}
+          </button>
 
           <ThemeSwitcher />
 
@@ -182,14 +176,59 @@ export default function Header() {
           searchModal={searchModal}
           setSearchModal={setSearchModal}
         />
+        <BookmarkModal
+          isOpen={bookmarkModal}
+          onClose={() => setBookmarkModal(false)}
+        />
       </nav>
 
-      {/* Mobile Drawer Backdrop Overlay */}
-      {showMenu && (
-        <div
-          onClick={() => setShowMenu(false)}
-          className="header-backdrop fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm lg:hidden"
-        />
+      {/* Mobile Drawer & Blurred Backdrop Overlay via Portal */}
+      {mounted && showMenu && createPortal(
+        <div style={{ position: "fixed", inset: 0, zIndex: 999999, display: "flex", justifyContent: "flex-end" }} className="lg:hidden">
+          <div
+            onClick={() => setShowMenu(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              backgroundColor: "rgba(2, 6, 23, 0.6)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+            }}
+          />
+          <div className="relative z-[1000000] flex h-full w-full max-w-[320px] flex-col justify-start border-l border-slate-200 bg-white/95 p-6 shadow-2xl backdrop-blur-2xl transition-transform duration-300 dark:border-slate-800 dark:bg-slate-900/95 animate-in slide-in-from-right duration-200">
+            {/* Mobile Drawer Top Header Bar */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
+              <Logo />
+              <button
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-primary/10 hover:text-primary dark:bg-slate-800 dark:text-slate-200"
+                onClick={() => setShowMenu(false)}
+                aria-label="Tutup Menu"
+              >
+                <IoClose className="text-xl" />
+              </button>
+            </div>
+
+            {/* Mobile Navigation Links */}
+            <ul className="space-y-1.5 mt-6">
+              {main.map((menuItem: any, i: number) => (
+                <li key={`mobile-menu-${i}`}>
+                  <Link
+                    href={menuItem.url}
+                    onClick={() => setShowMenu(false)}
+                    className={`block rounded-xl px-4 py-2.5 text-sm font-semibold capitalize transition-all ${
+                      pathname === menuItem.url
+                        ? "bg-primary text-white font-bold"
+                        : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    }`}
+                  >
+                    {menuItem.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>,
+        document.body
       )}
     </header>
   );

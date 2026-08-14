@@ -50,11 +50,21 @@ export function useReadingTracker() {
     }
   };
 
+  const clearBookmarks = () => {
+    try {
+      setBookmarks([]);
+      localStorage.removeItem(BOOKMARK_KEY);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return {
     bookmarks,
     readHistory,
     toggleBookmark,
     markAsRead,
+    clearBookmarks,
     isBookmarked: (slug: string) => mounted && bookmarks.includes(slug),
     isRead: (slug: string) => mounted && readHistory.includes(slug),
   };

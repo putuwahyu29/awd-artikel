@@ -17,7 +17,6 @@ import Link from "next/link";
 import { FaRegCalendar, FaUserAlt, FaRegClock, FaFileAlt, FaLink, FaCheck } from "react-icons/fa";
 import Post from "./partials/Post";
 import Sidebar from "./partials/Sidebar";
-import AuthorCard from "@layouts/components/AuthorCard";
 import ArticleToolbar from "@layouts/components/ArticleToolbar";
 import MarkAsRead from "@layouts/components/MarkAsRead";
 import ArticleStats from "@layouts/components/ArticleStats";
@@ -167,9 +166,10 @@ const PostSingle: React.FC<PostSingleProps> = ({
                   </div>
                 )}
 
-                {/* Interactive Article Toolbar (Audio Reader + Font Size + Print) */}
+                {/* Interactive Article Toolbar (Audio Reader + Bookmark + Font Size + Print) */}
                 <ArticleToolbar
                   title={title}
+                  slug={slug}
                   content={content}
                   currentFontSize={fontSize}
                   onFontSizeChange={setFontSize}
@@ -245,9 +245,6 @@ const PostSingle: React.FC<PostSingleProps> = ({
                     </button>
                   </div>
                 </div>
-
-                {/* Author Profile Card */}
-                <AuthorCard layout="article" />
 
                 {/* Toast Notification */}
                 {showToast && (
