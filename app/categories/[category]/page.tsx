@@ -9,6 +9,7 @@ import Post from "@partials/Post";
 import { notFound } from "next/navigation";
 import { PostItem } from "@/types";
 import type { Metadata } from "next";
+import { generateBreadcrumbSchema, generateCollectionPageSchema } from "@lib/schemaGenerator";
 
 const { blog_folder } = config.settings;
 
@@ -24,7 +25,9 @@ export async function generateMetadata({
   const title = `Kategori: ${humanizedCategory}`;
   const description = `Menampilkan semua artikel dengan topik/kategori ${humanizedCategory} di ${siteTitle}.`;
   const url = `${base_url}/categories/${category}`;
-  const ogImage = `${base_url}${meta_image}`;
+  const ogImage = meta_image.startsWith("http")
+    ? meta_image
+    : `${base_url}${meta_image}`;
 
   return {
     title,
@@ -37,10 +40,13 @@ export async function generateMetadata({
       description,
       url,
       siteName: siteTitle,
+      locale: "id_ID",
       type: "website",
       images: [
         {
           url: ogImage,
+          width: 1200,
+          height: 630,
           alt: title,
         },
       ],
@@ -50,6 +56,7 @@ export async function generateMetadata({
       title: `${title} | ${siteTitle}`,
       description,
       images: [ogImage],
+      creator: "@aguswahyudupayana",
     },
   };
 }
@@ -67,6 +74,7 @@ export default async function CategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
+  const humanizedCategory = humanize(category);
   const posts = getSinglePage(`content/${blog_folder}`);
   const filterPosts = posts.filter((post: PostItem) =>
     post.frontmatter.categories?.find((cat: string) =>
@@ -91,30 +99,56 @@ export default async function CategoryPage({
     })
     .filter((cat: { name: string; posts: number }) => cat.posts > 0);
 
+  const collectionSchema = generateCollectionPageSchema(
+    `Kategori: ${humanizedCategory}`,
+    `Daftar artikel topik ${humanizedCategory} di ${config.site.title}`,
+    `/categories/${category}`,
+    filterPosts.map((p: PostItem) => ({
+      name: p.frontmatter.title,
+      url: `/${blog_folder}/${p.slug}`,
+    }))
+  );
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Beranda", url: "/" },
+    { name: "Kategori", url: "/categories" },
+    { name: humanizedCategory, url: `/categories/${category}` },
+  ]);
+
   return (
-    <Base title={`Kategori ${category}`}>
-      <div className="section mt-16">
-        <div className="container">
-          <h1 className="h2 mb-12">
-            Menampilkan artikel dengan kategori
-            <span className="section-title ml-1 inline-block capitalize">
-              {category.replace("-", " ")}
-            </span>
-          </h1>
-          <div className="row">
-            <div className="lg:col-8">
-              <div className="row">
-                {filterPosts.map((post: PostItem, i: number) => (
-                  <div key={`key-${i}`} className="mb-8 flex col-12 sm:col-6">
-                    <Post post={post} />
-                  </div>
-                ))}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Base title={`Kategori ${humanizedCategory}`}>
+        <div className="section mt-16">
+          <div className="container">
+            <h1 className="h2 mb-12">
+              Menampilkan artikel dengan kategori
+              <span className="section-title ml-1 inline-block capitalize">
+                {humanizedCategory}
+              </span>
+            </h1>
+            <div className="row">
+              <div className="lg:col-8">
+                <div className="row">
+                  {filterPosts.map((post: PostItem, i: number) => (
+                    <div key={`key-${i}`} className="mb-8 flex col-12 sm:col-6">
+                      <Post post={post} />
+                    </div>
+                  ))}
+                </div>
               </div>
+              <Sidebar posts={posts} categories={categoriesWithPostsCount} />
             </div>
-            <Sidebar posts={posts} categories={categoriesWithPostsCount} />
           </div>
         </div>
-      </div>
-    </Base>
+      </Base>
+    </>
   );
 }

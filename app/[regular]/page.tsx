@@ -7,6 +7,7 @@ import { plainify } from "@lib/utils/textConverter";
 import config from "@config/index.json";
 import { PostItem } from "@/types";
 import type { Metadata } from "next";
+import { generateBreadcrumbSchema } from "@lib/schemaGenerator";
 
 export async function generateMetadata({
   params,
@@ -46,10 +47,13 @@ export async function generateMetadata({
       description: pageDescription,
       url: pageUrl,
       siteName: siteTitle,
+      locale: "id_ID",
       type: "website",
       images: [
         {
           url: pageImage,
+          width: 1200,
+          height: 630,
           alt: pageTitle,
         },
       ],
@@ -59,6 +63,7 @@ export async function generateMetadata({
       title: pageTitle,
       description: pageDescription,
       images: [pageImage],
+      creator: "@aguswahyudupayana",
     },
   };
 }
@@ -81,16 +86,27 @@ export default async function RegularPage({
     data.frontmatter;
   const { content } = data;
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Beranda", url: "/" },
+    { name: title, url: `/${regular}` },
+  ]);
+
   return (
-    <Base
-      title={title}
-      description={description ? description : content.slice(0, 120)}
-      meta_title={meta_title}
-      image={image}
-      noindex={noindex}
-      canonical={canonical}
-    >
-      {layout === "404" ? <NotFound data={data} /> : <Default data={data} />}
-    </Base>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Base
+        title={title}
+        description={description ? description : content.slice(0, 120)}
+        meta_title={meta_title}
+        image={image}
+        noindex={noindex}
+        canonical={canonical}
+      >
+        {layout === "404" ? <NotFound data={data} /> : <Default data={data} />}
+      </Base>
+    </>
   );
 }

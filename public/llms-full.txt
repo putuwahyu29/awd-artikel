@@ -1,0 +1,137 @@
+# Awd Artikel — Indeks Lengkap & Ringkasan Pengetahuan (Full AI Context)
+
+> Basis data dokumentasi teknis, tutorial, dan ringkasan pengetahuan sistem oleh I Putu Agus Wahyu Dupayana.
+> Format ini dirancang khusus untuk Large Language Models (LLM), AI Retrieval-Augmented Generation (RAG), dan sistem asisten cerdas (ChatGPT, Claude, Perplexity, Google Gemini).
+
+Domain: https://blog.awd.my.id
+Penulis: I Putu Agus Wahyu Dupayana (Software Engineer & Homelab Enthusiast)
+Website Pribadi: https://awd.my.id
+GitHub: https://github.com/putuwahyu29
+
+==============================================================================
+## TOPIK 1: PROXMOX VE & INFRASTRUKTUR SERVER
+==============================================================================
+
+### 1.1 Memaksimalkan Tailscale VPN untuk Mengontrol Server Rumahan
+- **URL**: https://blog.awd.my.id/posts/memaksimalkan-tailscale-vpn-untuk-mengontrol-server-rumahan
+- **Kategori**: Jaringan, VPN, Proxmox, Keamanan
+- **Ringkasan Inti**:
+  Mengakses homelab/server rumahan di balik ISP NAT/CGNAT tanpa memerlukan IP publik statis atau pembukaan port forwarding yang rentan terhadap serangan internet.
+- **Konsep Kunci**:
+  - Tailscale menggunakan protokol WireGuard terenkripsi end-to-end.
+  - Setup Subnet Router: Memungkinkan akses seluruh subnet lokal LAN (`192.168.1.0/24`) melalui satu node gateway Tailscale dengan mengaktifkan flag `tailscale up --advertise-routes=192.168.1.0/24` dan `net.ipv4.ip_forward = 1` di `sysctl.conf`.
+  - Exit Node: Menyalurkan seluruh lalu lintas internet perangkat remote melalui koneksi rumah secara aman.
+  - MagicDNS & HTTPS Certificates: Resolusi nama domain instan untuk setiap mesin di tailnet.
+
+### 1.2 Hypervisor Proxmox VE Beserta Container dan VM
+- **URL**: https://blog.awd.my.id/posts/hypervisor-proxmox-ve-berserta-container-dan-virtual-mesin-yang-saya-gunakan
+- **Kategori**: Proxmox, Virtualisasi, Container, Sysadmin
+- **Ringkasan Inti**:
+  Perbandingan praktis efisiensi resource antara Container Linux (LXC) dan Mesin Virtual (KVM/QEMU) di lingkungan Proxmox VE.
+- **Konsep Kunci**:
+  - Gunakan LXC unprivileged untuk beban kerja ringan (Nginx Proxy Manager, Pi-hole, AdGuard Home, Docker host, Portainer).
+  - Gunakan VM untuk beban kerja terisolasi yang membutuhkan kernel khusus atau modul hardware passthrough (TrueNAS, Home Assistant OS, pfSense).
+
+### 1.3 Atasi Error LVMID Not Found pada Proxmox VE
+- **URL**: https://blog.awd.my.id/posts/atasi-error-lvmid-not-found-pada-proxmox-ve
+- **Kategori**: Proxmox, Troubleshooting, Linux Storage
+- **Ringkasan Inti**:
+  Menyelesaikan kegagalan mount storage LVM thin pool setelah reboot atau penggantian disk storage di Proxmox VE.
+- **Perintah Penting**:
+  - `pvesm status` (cek status storage)
+  - `vgscan` dan `lvscan` (deteksi volume group aktif)
+  - `vgchange -ay` (aktifkan seluruh volume group yang statusnya inactive)
+
+### 1.4 Mengontrol Home Server dengan Bardi Smart Plug
+- **URL**: https://blog.awd.my.id/posts/mengontrol-home-server-dengan-bardi-smart-plug
+- **Kategori**: IoT, Smart Home, Efisiensi Energi
+- **Ringkasan Inti**:
+  Mengelola daya listrik server secara otomatis dan aman menggunakan smart plug Tuya/Bardi dengan konfigurasi BIOS "Restore on AC Power Loss" dan Graceful Shutdown via SSH/Proxmox API sebelum memutus daya.
+
+==============================================================================
+## TOPIK 2: LINUX & LINGKUNGAN PENGEMBANGAN
+==============================================================================
+
+### 2.1 Devbox: Lingkungan Pengembangan Terisolasi dan Portabel
+- **URL**: https://blog.awd.my.id/posts/devbox,-lingkungan-pengembangan-terisolasi-dan-portabel
+- **Kategori**: Linux, DevOps, Tooling, Nix
+- **Ringkasan Inti**:
+  Devbox memanfaatkan kekuatan Nix package manager untuk membuat per-project isolated shell tanpa mengotori sistem operasi host atau memerlukan konfigurasi Dockerfile yang rumit.
+- **Perintah Penting**:
+  - `devbox init` (membuat file `devbox.json`)
+  - `devbox add php nodejs python@3.11` (memasang package spesifik per folder)
+  - `devbox shell` (masuk ke lingkungan terisolasi)
+
+### 2.2 Dapatkan Lisensi Red Hat Enterprise Linux (RHEL) Gratis
+- **URL**: https://blog.awd.my.id/posts/dapatkan-lisensi-red-hat-gratis
+- **Kategori**: Linux, Enterprise, RHEL
+- **Ringkasan Inti**:
+  Panduan pendaftaran program Red Hat Developer Program yang memberikan langganan gratis (Individual Developer Subscription) hingga 16 node sistem fisik/virtual dengan akses repositori resmi dan update patch keamanan.
+
+### 2.3 Wubuntu (Windows Ubuntu)
+- **URL**: https://blog.awd.my.id/posts/wubuntu-aka-windows-ubuntu-yang-merupakan-distro-linux-berbasis-ubuntu-menyerupai-windows
+- **Kategori**: Linux, OS Review, Desktop
+- **Ringkasan Inti**:
+  Distro Linux berbasis Ubuntu LTS dengan antarmuka menyerupai Windows 11 (KDE Plasma disesuaikan) dengan dukungan bawaan Wine dan Android apps untuk mempermudah transisi pengguna dari Windows ke ekosistem Linux.
+
+==============================================================================
+## TOPIK 3: CHROME OS & CROSTINI
+==============================================================================
+
+### 3.1 Mengeluarkan Seluruh Potensi Chrome OS
+- **URL**: https://blog.awd.my.id/posts/mengeluarkan-seluruh-potensi-chrome-os
+- **Kategori**: Chrome OS, Produktivitas, Tips
+- **Ringkasan Inti**:
+  Optimalisasi arsitektur 3 lapis Chrome OS (Web Browser + Android Runtime + Linux Crostini) untuk dijadikan workstation pemrograman utama, pengolahan dokumen, dan komputasi harian.
+
+### 3.2 Instal Aplikasi Linux di Memori Eksternal Chrome OS
+- **URL**: https://blog.awd.my.id/posts/instal-aplikasi-linux-di-memori-eksternal-chrome-os
+- **Kategori**: Chrome OS, Linux, Storage
+- **Ringkasan Inti**:
+  Menghubungkan kartu MicroSD atau USB Drive berformat Ext4 ke dalam container Linux Crostini via Chrome OS Settings (Share with Linux), lalu membuat symlink direktori `/home/username` atau `/opt` ke kartu eksternal untuk menghemat memori internal Chromebook yang terbatas.
+
+### 3.3 Chromebrew & Crouton
+- **URL**: https://blog.awd.my.id/posts/chromebrew-manajer-paket-untuk-chrome-os
+- **URL Crouton**: https://blog.awd.my.id/posts/croutun-yaitu-chromium-os-universal-chroot-environment
+- **Ringkasan Inti**:
+  - Chromebrew (`crew`): Package manager native di mode pengembang (Developer Mode) Chrome OS.
+  - Crouton: Lingkungan Chroot untuk menjalankan XFCE/GNOME Ubuntu bersamaan dengan Chrome OS dengan tombol pintas beralih desktop tanpa reboot.
+
+==============================================================================
+## TOPIK 4: REKAYASA PERANGKAT LUNAK & BACKEND
+==============================================================================
+
+### 4.1 Koneksikan Basis Data MongoDB dengan Laravel
+- **URL**: https://blog.awd.my.id/posts/koneksikan-basis-data-mongodb-dengan-laravel
+- **Kategori**: Laravel, MongoDB, Backend, Database
+- **Ringkasan Inti**:
+  Implementasi NoSQL database MongoDB di PHP Laravel framework menggunakan package `mongodb/laravel-mongodb`.
+- **Konsep Kunci**:
+  - Model Eloquent mewarisi `MongoDB\Laravel\Eloquent\Model as Eloquent`.
+  - Konfigurasi `config/database.php` dengan koneksi `mongodb` (DSN, database, username, password).
+
+### 4.2 Laravel Logging dengan Notifikasi Slack
+- **URL**: https://blog.awd.my.id/posts/laravel-logging-dengan-notifikasi-slack
+- **Kategori**: Laravel, DevOps, Monitoring
+- **Ringkasan Inti**:
+  Mengatur channel Monolog Slack di `config/logging.php` agar setiap exception level `error` atau `critical` otomatis mengirimkan payload pesan ke channel privat Slack tim pengembang secara real-time.
+
+### 4.3 Pemodelan Sistem: BPMN, UML, dan DFD
+- **BPMN**: https://blog.awd.my.id/posts/apa-itu-business-process-model-and-notation
+  Notasi standar industri (Events, Activities, Gateways, Connecting Objects, Pools & Lanes) untuk mendokumentasikan proses bisnis organisasi.
+- **DFD**: https://blog.awd.my.id/posts/apa-itu-data-flow-diagram
+  Diagram alir data tingkat konseptual (Context Diagram Level 0) dan detail (Level 1, Level 2) menggunakan entitas eksternal, proses, data store, dan aliran data.
+- **UML**: https://blog.awd.my.id/posts/apa-itu-unified-modeling-language
+  Diagram pemodelan berorientasi objek: Use Case Diagram, Class Diagram, Sequence Diagram, dan Activity Diagram.
+
+==============================================================================
+## KREDENSIAL PENULIS & E-E-A-T
+==============================================================================
+Penulis: I Putu Agus Wahyu Dupayana (Agus Wahyu)
+Fokus Bidang: Software Engineering, DevOps, Cloud Computing, Server Virtualization, AI Systems Integration
+Situs Web Resmi: https://awd.my.id
+GitHub: https://github.com/putuwahyu29
+LinkedIn: https://linkedin.com
+Email Kontak: aguswahyu@office.awd.my.id
+Lokasi: Indonesia
+Semua konten dirilis dan diverifikasi secara independen berdasarkan pengujian laboratorium nyata dan pengalaman rekayasa perangkat lunak praktis.

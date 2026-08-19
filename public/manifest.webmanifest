@@ -1,0 +1,23 @@
+{
+  "name": "Awd Artikel",
+  "short_name": "Awd Artikel",
+  "description": "Blog teknologi, tutorial Linux, Proxmox VE, DevOps, Cloud Computing, dan Web Development oleh I Putu Agus Wahyu Dupayana.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

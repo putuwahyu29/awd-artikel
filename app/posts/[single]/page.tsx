@@ -8,6 +8,7 @@ import { PostItem } from "@/types";
 import { plainify, slugify } from "@lib/utils/textConverter";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { generateBlogPostingSchema, generateBreadcrumbSchema } from "@lib/schemaGenerator";
 
 const { blog_folder } = config.settings;
 
@@ -28,7 +29,7 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  const { title, meta_title, description, image, date } = post.frontmatter;
+  const { title, meta_title, description, image, date, categories = [] } = post.frontmatter;
   const { meta_description, meta_image, meta_author } = config.metadata;
   const { base_url, title: siteTitle } = config.site;
 
@@ -43,11 +44,13 @@ export async function generateMetadata({
       : `${base_url}/${image}`
     : `${base_url}${meta_image}`;
   const canonicalUrl = `${base_url}/${blog_folder}/${single}`;
+  const authorName = post.frontmatter.author || meta_author;
 
   return {
     title: postTitle,
     description: postDescription,
-    authors: [{ name: post.frontmatter.author || meta_author }],
+    authors: [{ name: authorName, url: "https://awd.my.id" }],
+    keywords: categories.join(", "),
     alternates: {
       canonical: canonicalUrl,
     },
@@ -56,8 +59,13 @@ export async function generateMetadata({
       description: postDescription,
       url: canonicalUrl,
       siteName: siteTitle,
+      locale: "id_ID",
       type: "article",
       publishedTime: date ? new Date(date).toISOString() : undefined,
+      modifiedTime: date ? new Date(date).toISOString() : undefined,
+      authors: [authorName],
+      section: categories[0] || "Teknologi",
+      tags: categories,
       images: [
         {
           url: postImage,
@@ -72,6 +80,7 @@ export async function generateMetadata({
       title: postTitle,
       description: postDescription,
       images: [postImage],
+      creator: "@aguswahyudupayana",
     },
   };
 }
@@ -123,15 +132,38 @@ export default async function ArticlePage({
     })
     .filter((cat: { name: string; posts: number }) => cat.posts > 0);
 
+  // Structured Data (JSON-LD)
+  const blogPostingSchema = generateBlogPostingSchema(
+    post.frontmatter,
+    single,
+    post.content
+  );
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Beranda", url: "/" },
+    { name: "Artikel", url: `/${blog_folder}` },
+    { name: post.frontmatter.title, url: `/${blog_folder}/${single}` },
+  ]);
+
   return (
-    <PostSingle
-      frontmatter={post.frontmatter}
-      content={post.content}
-      mdxChildren={<MdxContent source={post.content} />}
-      slug={single}
-      allCategories={categoriesWithPostsCount}
-      relatedPosts={relatedPosts}
-      posts={posts}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <PostSingle
+        frontmatter={post.frontmatter}
+        content={post.content}
+        mdxChildren={<MdxContent source={post.content} />}
+        slug={single}
+        allCategories={categoriesWithPostsCount}
+        relatedPosts={relatedPosts}
+        posts={posts}
+      />
+    </>
   );
 }

@@ -1,0 +1,69 @@
+# Awd Artikel
+
+> Blog teknologi, tutorial sistem, infrastruktur server, dan rekayasa perangkat lunak oleh I Putu Agus Wahyu Dupayana.
+
+Situs ini mempublikasikan panduan teknis mendalam, tutorial langsung, studi kasus arsitektur perangkat lunak, konfigurasi Proxmox VE & Tailscale, manajemen container Docker/LXC, pengoptimalan Linux & Chrome OS, serta pengembangan aplikasi web modern.
+
+- **URL Utama**: https://blog.awd.my.id
+- **Bahasa**: Indonesia (id-ID)
+- **Penulis**: I Putu Agus Wahyu Dupayana (Agus Wahyu)
+- **Portofolio & Kontak**: https://awd.my.id
+- **GitHub**: https://github.com/putuwahyu29
+- **RSS Feed**: https://blog.awd.my.id/rss.xml
+- **Sitemap**: https://blog.awd.my.id/sitemap.xml
+
+---
+
+## Fokus Topik & Keahlian (E-E-A-T)
+
+1. **Virtualisasi & Home Server (Proxmox VE)**: Panduan membangun server mandiri (self-hosted), manajemen Container LXC, konfigurasi Virtual Machine (VM), backup, dan troubleshooting error LVM.
+2. **Networking & VPN (Tailscale)**: Implementasi mesh VPN WireGuard berbasis Tailscale untuk akses jarak jauh aman ke homelab, server lokal, dan subnet routing.
+3. **Linux & Open Source**: Konfigurasi distribusi Linux (Ubuntu, Debian, Red Hat Enterprise Linux RHEL), paket manajer, isolasi lingkungan kerja (Devbox/Nix), dan alternatif perangkat lunak sumber terbuka (FOSS).
+4. **Chrome OS / Chromium OS**: Ekosistem Crostini Linux container, Chromebrew (crew), Crouton chroot, optimasi Chrome flags, dan penyimpanan aplikasi eksternal.
+5. **Web Development & DevOps**: Integrasi backend Laravel dengan MongoDB, logging notifikasi Slack otomatis, pemodelan sistem (BPMN, UML, DFD), dan optimasi frontend Next.js.
+6. **Smart Home & Automation**: Pengendalian daya server rumahan berbasis IoT (Bardi Smart Plug) dan otomatisasi siklus hidup server.
+
+---
+
+## Indeks Artikel & Panduan Teknis
+
+### Proxmox VE, Server & Jaringan
+- [Memaksimalkan Tailscale VPN untuk Mengontrol Server Rumahan](https://blog.awd.my.id/posts/memaksimalkan-tailscale-vpn-untuk-mengontrol-server-rumahan): Panduan komprehensif mengamankan akses server rumahan menggunakan Tailscale tanpa port forwarding publik.
+- [Hypervisor Proxmox VE Beserta Container dan Virtual Mesin yang Saya Gunakan](https://blog.awd.my.id/posts/hypervisor-proxmox-ve-berserta-container-dan-virtual-mesin-yang-saya-gunakan): Arsitektur pembagian resource VM dan LXC container untuk homelab berkinerja tinggi.
+- [Home Server Proxmox VE Terbaru](https://blog.awd.my.id/posts/home-server-proxmox-ve-terbaru): Spesifikasi hardware, setup dasar, dan konfigurasi awal Proxmox VE untuk keperluan lab produksi rumahan.
+- [Atasi Error LVMID Not Found pada Proxmox VE](https://blog.awd.my.id/posts/atasi-error-lvmid-not-found-pada-proxmox-ve): Langkah demi langkah menyelesaikan masalah partisi storage LVM-ID yang hilang atau unmapped di Proxmox.
+- [Mengontrol Home Server dengan Bardi Smart Plug](https://blog.awd.my.id/posts/mengontrol-home-server-dengan-bardi-smart-plug): Otomatisasi daya dan manajemen boot/shutdown server dari jarak jauh menggunakan perangkat IoT.
+
+### Linux & Lingkungan Pengembangan
+- [Devbox: Lingkungan Pengembangan Terisolasi dan Portabel](https://blog.awd.my.id/posts/devbox,-lingkungan-pengembangan-terisolasi-dan-portabel): Solusi manajemen dependensi proyek yang konsisten dan terisolasi berbasis Nix tanpa overhead virtual machine.
+- [Dapatkan Lisensi Red Hat Gratis](https://blog.awd.my.id/posts/dapatkan-lisensi-red-hat-gratis): Cara mendaftar dan mengaktifkan langganan Red Hat Developer Subscription gratis untuk hingga 16 sistem RHEL.
+- [Wubuntu: Distro Linux Berbasis Ubuntu Menyerupai Windows](https://blog.awd.my.id/posts/wubuntu-aka-windows-ubuntu-yang-merupakan-distro-linux-berbasis-ubuntu-menyerupai-windows): Analisis fitur, kompatibilitas aplikasi Windows (Wine), dan performa Wubuntu.
+- [Puter: Web OS Open Source](https://blog.awd.my.id/posts/puter,-web-os-open-source): Eksplorasi lingkungan desktop berbasis cloud dan browser self-hosted dengan kemampuan komputasi canggih.
+- [Aplikasi Open Source Pengganti YouTube: LibreTube](https://blog.awd.my.id/posts/aplikasi-open-source-pengganti-youtube-yaitu-libretube): Klien YouTube alternatif yang ringan, bebas iklan, dan ramah privasi berbasis Piped API.
+
+### Chrome OS & Chromium OS
+- [Mengeluarkan Seluruh Potensi Chrome OS](https://blog.awd.my.id/posts/mengeluarkan-seluruh-potensi-chrome-os): Trik dan pengaturan optimal untuk menjadikan Chromebook sebagai mesin produktivitas dan pemrograman harian.
+- [Instal Aplikasi Linux di Memori Eksternal Chrome OS](https://blog.awd.my.id/posts/instal-aplikasi-linux-di-memori-eksternal-chrome-os): Mengatasi keterbatasan penyimpanan internal dengan memindahkan container Linux Crostini ke MicroSD/Flashdisk.
+- [Apakah Chrome OS Bisa Menggantikan Windows di Masa Depan?](https://blog.awd.my.id/posts/apakah-chrome-os-bisa-menggantikan-windows-di-masa-depan): Analisis komparasi ekosistem aplikasi, kemampuan hybrid Linux/Android, dan tren komputasi awan.
+- [Chrome OS Flags yang Bermanfaat untuk Produktivitas](https://blog.awd.my.id/posts/chrome-os-flags-yang-bermanfaat-untuk-produktifitas): Daftar eksperimen flags Chrome OS terbaik untuk meningkatkan performa browsing dan multitasking.
+- [Chromebrew: Manajer Paket untuk Chrome OS](https://blog.awd.my.id/posts/chromebrew-manajer-paket-untuk-chrome-os): Instalasi CLI tools, bahasa pemrograman, dan utilitas Linux langsung di lingkungan native Chrome OS.
+- [Crouton: Chromium OS Universal Chroot Environment](https://blog.awd.my.id/posts/croutun-yaitu-chromium-os-universal-chroot-environment): Menjalankan desktop environment Linux (Ubuntu/Debian) berdampingan dengan Chrome OS tanpa reboot.
+
+### Rekayasa Perangkat Lunak & Backend
+- [Koneksikan Basis Data MongoDB dengan Laravel](https://blog.awd.my.id/posts/koneksikan-basis-data-mongodb-dengan-laravel): Panduan integrasi NoSQL MongoDB ke dalam framework PHP Laravel menggunakan driver resmi jenssegers/laravel-mongodb.
+- [Laravel Logging dengan Notifikasi Slack](https://blog.awd.my.id/posts/laravel-logging-dengan-notifikasi-slack): Konfigurasi webhook Slack pada Monolog Laravel untuk real-time exception and error monitoring.
+- [Apa Itu Business Process Model and Notation (BPMN)](https://blog.awd.my.id/posts/apa-itu-business-process-model-and-notation): Standar pemodelan alur proses bisnis visual untuk analis sistem dan pengembang perangkat lunak.
+- [Apa Itu Data Flow Diagram (DFD)](https://blog.awd.my.id/posts/apa-itu-data-flow-diagram): Konsep notasi DFD level 0, level 1, dan pemetaan aliran data sistem informasi.
+- [Apa Itu Unified Modeling Language (UML)](https://blog.awd.my.id/posts/apa-itu-unified-modeling-language): Panduan Use Case Diagram, Class Diagram, Activity Diagram, dan Sequence Diagram dalam Object-Oriented Programming (OOP).
+
+---
+
+## Arsip & Kategori
+- **Semua Kategori**: https://blog.awd.my.id/categories
+- **Kategori Linux**: https://blog.awd.my.id/categories/linux
+- **Kategori Proxmox**: https://blog.awd.my.id/categories/proxmox
+- **Kategori Tailscale**: https://blog.awd.my.id/categories/tailscale
+- **Kategori Chrome OS**: https://blog.awd.my.id/categories/chrome-os
+- **Kategori Web Development**: https://blog.awd.my.id/categories/web-development
+- **Kategori Rekayasa Perangkat Lunak**: https://blog.awd.my.id/categories/rekayasa-perangkat-lunak
+- **Kategori Analisis Bisnis**: https://blog.awd.my.id/categories/analisis
